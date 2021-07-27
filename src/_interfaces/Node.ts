@@ -2,11 +2,11 @@ enum NODE_BUILDINGS {
   FOUNDATION_STONE = 'foundation-stone'
 }
 
-interface Node {
+interface INode {
   id: string,
   x: number,
   y: number,
   building?: NODE_BUILDINGS
 }
 
-export default Node
+export default INode

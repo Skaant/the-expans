@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import "../global.css"
-import Data from '../models/Data';
+import IData from '../_interfaces/Data';
+import ILayout from '../_interfaces/Layout';
+import IOrigin from '../_interfaces/Origin';
+import Node from './Node';
 
 function App() {
   /** WINDOW DIMENSIONS */
-  const [dimensions, setDimensions] = useState({
+  const [layout, setLayout] = useState<ILayout>({
     height: window.innerHeight,
     width: window.innerWidth
   })
-  const { height, width } = dimensions
+  const { height, width } = layout
   /** ORIGIN POINT */
-  const [origin, setOrigin] = useState({ x: width/2, y: height/2 })
-  const { x, y } = origin
+  const [origin, setOrigin] = useState<IOrigin>({ x: width/2, y: height/2 })
   /** DATA */
-  const [data, setData] = useState<Data>({
+  const [data/* , setData */] = useState<IData>({
     nodes: [{
       id: 'salut',
-      x: 70,
-      y: 300
+      x: -70,
+      y: -100
+    }, {
+      id: 'ok lol',
+      x: 40,
+      y: 0
     }],
     edges: [],
     areas: []
@@ -27,7 +33,7 @@ function App() {
   function updateDimensions() {
     const height = window.innerHeight
     const width = window.innerWidth
-    setDimensions({
+    setLayout({
       height,
       width
     })
@@ -47,11 +53,8 @@ function App() {
         viewBox={`0 0 ${width} ${height}"`}
       >
         {
-          nodes.map(({id, x: nodeX, y: nodeY}) => (
-            <g>
-              <text x={x + nodeX} y={y + nodeY - 70} textAnchor="middle">{id}</text>
-              <circle cx={x + nodeX} cy={y + nodeY} r={50} style={{color: 'white'}}/>
-            </g>
+          nodes.map(node => (
+            <Node key={node.id} origin={origin} node={node} />
           ))
         }
       </svg>
