@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../global.css"
 import IData from '../_interfaces/Data';
 import ILayout from '../_interfaces/Layout';
+import INode from '../_interfaces/Node';
 import IOrigin from '../_interfaces/Origin';
 import Node from './Node';
 
@@ -29,6 +30,11 @@ function App() {
     areas: []
   })
   const {nodes} = data
+  /** SELECTOR */
+  const [selection, setSelection] = useState<INode>()
+  function select(selected?: INode) {
+    setSelection(selection && selection === selected ? undefined : selected)
+  }
   /** RESIZE UPDATER */
   function updateDimensions() {
     const height = window.innerHeight
@@ -54,7 +60,9 @@ function App() {
       >
         {
           nodes.map(node => (
-            <Node key={node.id} origin={origin} node={node} />
+            <Node key={node.id} origin={origin} node={node}
+              selected={selection === node}
+              select={select} />
           ))
         }
       </svg>
