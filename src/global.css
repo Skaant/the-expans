@@ -1,0 +1,8 @@
+html,
+body,
+#root,
+#the-expans--app,
+#the-expans--app > svg {
+  height: 100%;
+  width: 100%;
+}
