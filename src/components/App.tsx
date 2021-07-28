@@ -3,12 +3,18 @@ import "../global.css";
 import ILayout from "../_interfaces/Layout";
 import NodeModel from "../_interfaces/Node";
 import IOrigin from "../_interfaces/Origin";
-import { useAppSelector } from "../_store/hooks";
+import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
+import {
+  currentSelectionSelector,
+  select,
+} from "../_store/_reducers/selection";
 import Node from "./Node";
 
 function App() {
+  const selection = useAppSelector(currentSelectionSelector);
   const nodes = useAppSelector(nodesSelector);
+  const dispatch = useAppDispatch();
   /** WINDOW DIMENSIONS */
   const [layout, setLayout] = useState<ILayout>({
     height: window.innerHeight,
@@ -20,11 +26,6 @@ function App() {
     x: width / 2,
     y: height / 2,
   });
-  /** SELECTOR */
-  const [selection, setSelection] = useState<NodeModel>();
-  function select(selected?: NodeModel) {
-    setSelection(selection && selection === selected ? undefined : selected);
-  }
   /** RESIZE UPDATER */
   function updateDimensions() {
     const height = window.innerHeight;
@@ -53,7 +54,7 @@ function App() {
             origin={origin}
             node={node}
             selected={selection === node}
-            select={select}
+            select={(selection?: NodeModel) => dispatch(select({ selection }))}
           />
         ))}
       </svg>
