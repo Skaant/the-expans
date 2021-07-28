@@ -1,4 +1,4 @@
-import Coords from "../_model/Coords";
+import Coords from "../_models/Coords";
 import { BASE_EDGE_SIZE, COS_30, SIN_30 } from "./primordials";
 
 export enum DIRECTIONS {

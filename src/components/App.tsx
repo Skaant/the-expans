@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../global.css";
 import ILayout from "../_interfaces/Layout";
 import NodeModel from "../_interfaces/Node";
-import Coords from "../_model/Coords";
+import Coords from "../_models/Coords";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import {

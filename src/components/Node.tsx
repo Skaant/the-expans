@@ -2,7 +2,7 @@ import * as React from "react";
 import { DIRECTIONS } from "../_data/directions";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
 import NodeModel from "../_interfaces/Node";
-import Coords from "../_model/Coords";
+import Coords from "../_models/Coords";
 import NodeSlot from "./NodeSlot";
 
 function Node({

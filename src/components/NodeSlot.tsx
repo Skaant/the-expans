@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DIRECTIONS, DIRECTIONS_MODIFIERS } from "../_data/directions";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
-import Coords from "../_model/Coords";
+import Coords from "../_models/Coords";
 import { useAppDispatch } from "../_store/hooks";
 import { addNode } from "../_store/_reducers/nodes";
 
