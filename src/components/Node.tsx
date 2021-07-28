@@ -2,7 +2,7 @@ import * as React from "react";
 import { DIRECTIONS } from "../_data/directions";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
 import NodeModel from "../_interfaces/Node";
-import IOrigin from "../_interfaces/Origin";
+import Coords from "../_model/Coords";
 import NodeSlot from "./NodeSlot";
 
 function Node({
@@ -12,7 +12,7 @@ function Node({
   select,
 }: {
   node: NodeModel;
-  origin: IOrigin;
+  origin: Coords;
   selected: boolean;
   select: (selected?: NodeModel) => void;
 }) {

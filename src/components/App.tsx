@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../global.css";
 import ILayout from "../_interfaces/Layout";
 import NodeModel from "../_interfaces/Node";
-import IOrigin from "../_interfaces/Origin";
+import Coords from "../_model/Coords";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import {
@@ -22,7 +22,7 @@ function App() {
   });
   const { height, width } = layout;
   /** ORIGIN POINT */
-  const [origin, setOrigin] = useState<IOrigin>({
+  const [origin, setOrigin] = useState<Coords>({
     x: width / 2,
     y: height / 2,
   });
