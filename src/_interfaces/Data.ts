@@ -1,9 +1,9 @@
-import INode from "./Node";
+import NodeModel from "./Node";
 
 interface IData {
-  nodes: INode[],
-  edges: [],
-  areas: []
+  nodes: NodeModel[];
+  edges: [];
+  areas: [];
 }
 
-export default IData
+export default IData;

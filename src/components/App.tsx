@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../global.css";
-import IData from "../_interfaces/Data";
 import ILayout from "../_interfaces/Layout";
-import INode from "../_interfaces/Node";
+import NodeModel from "../_interfaces/Node";
 import IOrigin from "../_interfaces/Origin";
+import { useAppSelector } from "../_store/hooks";
+import { nodesSelector } from "../_store/_reducers/nodes";
 import Node from "./Node";
 
 function App() {
+  const nodes = useAppSelector(nodesSelector);
   /** WINDOW DIMENSIONS */
   const [layout, setLayout] = useState<ILayout>({
     height: window.innerHeight,
@@ -18,22 +20,9 @@ function App() {
     x: width / 2,
     y: height / 2,
   });
-  /** DATA */
-  const [data /* , setData */] = useState<IData>({
-    nodes: [
-      {
-        id: "HOLY CITY of Zumbaba",
-        x: 40,
-        y: 80,
-      },
-    ],
-    edges: [],
-    areas: [],
-  });
-  const { nodes } = data;
   /** SELECTOR */
-  const [selection, setSelection] = useState<INode>();
-  function select(selected?: INode) {
+  const [selection, setSelection] = useState<NodeModel>();
+  function select(selected?: NodeModel) {
     setSelection(selection && selection === selected ? undefined : selected);
   }
   /** RESIZE UPDATER */

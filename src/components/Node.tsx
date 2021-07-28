@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DIRECTIONS, DIRECTIONS_MODIFIERS } from "../_data/directions";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
-import INode from "../_interfaces/Node";
+import NodeModel from "../_interfaces/Node";
 import IOrigin from "../_interfaces/Origin";
 
 function Node({
@@ -10,10 +10,10 @@ function Node({
   selected,
   select,
 }: {
-  node: INode;
+  node: NodeModel;
   origin: IOrigin;
   selected: boolean;
-  select: (selected?: INode) => void;
+  select: (selected?: NodeModel) => void;
 }) {
   const { x: oX, y: oY } = origin;
   const { id, x: nX, y: nY } = node;
