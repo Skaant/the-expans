@@ -1,5 +1,5 @@
 import { SelectPayload } from "../_actions/selection";
-import NodeModel from "../../_interfaces/Node";
+import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 

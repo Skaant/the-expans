@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../global.css";
 import LayoutModel from "../_models/Layout";
-import NodeModel from "../_interfaces/Node";
+import NodeModel from "../_models/Node";
 import Coords from "../_models/Coords";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";

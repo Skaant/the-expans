@@ -1,4 +1,4 @@
-import NodeModel from "../../_interfaces/Node";
+import NodeModel from "../../_models/Node";
 
 export const SELECT = "SELECT";
 export interface SelectPayload {

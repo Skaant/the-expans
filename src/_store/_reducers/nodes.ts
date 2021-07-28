@@ -1,5 +1,5 @@
 import { AddNodePayload } from "../_actions/nodes";
-import NodeModel from "../../_interfaces/Node";
+import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
