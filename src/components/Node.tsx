@@ -38,7 +38,7 @@ function Node({
               key={`id-${direction}`}
               cx={x + modX}
               cy={y + modY}
-              r={BASE_NODE_RADIUS / 5}
+              r={BASE_NODE_RADIUS / 2}
             ></circle>
           );
         })}
