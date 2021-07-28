@@ -1,66 +1,67 @@
+import Coords from "../_model/Coords";
 import { BASE_EDGE_SIZE, COS_30, SIN_30 } from "./primordials";
 
-export const DIRECTIONS = {
-  ZERO: 0,
-  UN: 30,
-  DEUX: 60,
-  TROIS: 90,
-  QUATRE: 120,
-  CINQ: 150,
-  SIX: 180,
-  SEPT: 210,
-  HUIT: 240,
-  NEUF: 270,
-  DIX: 300,
-  ONZE: 330,
+export enum DIRECTIONS {
+  N = 'n',
+  NE = 'ne',
+  EN = 'en',
+  E = 'e',
+  ES = 'es',
+  SE = 'se',
+  S = 's',
+  SW = 'sw',
+  WS = 'ws',
+  W = 'w',
+  WN = 'wn',
+  NW = 'nw'
 };
 
-export const DIRECTIONS_MODIFIERS = {
-  [DIRECTIONS.ZERO]: {
+export const DIRECTIONS_MODIFIERS: {[key in DIRECTIONS]: Coords} = {
+  [DIRECTIONS.N]: {
     x: 0,
     y: BASE_EDGE_SIZE,
   },
-  [DIRECTIONS.UN]: {
+  [DIRECTIONS.NE]: {
     x: BASE_EDGE_SIZE * SIN_30,
     y: BASE_EDGE_SIZE * COS_30,
   },
-  [DIRECTIONS.DEUX]: {
+  [DIRECTIONS.EN]: {
     x: BASE_EDGE_SIZE * COS_30,
     y: BASE_EDGE_SIZE * SIN_30,
   },
-  [DIRECTIONS.TROIS]: {
+  [DIRECTIONS.E]: {
     x: BASE_EDGE_SIZE,
     y: 0,
   },
-  [DIRECTIONS.QUATRE]: {
+  [DIRECTIONS.ES]: {
     x: BASE_EDGE_SIZE * COS_30,
     y: -BASE_EDGE_SIZE * SIN_30,
   },
-  [DIRECTIONS.CINQ]: {
+  [DIRECTIONS.SE]: {
     x: BASE_EDGE_SIZE * SIN_30,
     y: -BASE_EDGE_SIZE * COS_30,
   },
-  [DIRECTIONS.SIX]: {
+  [DIRECTIONS.S]: {
     x: 0,
     y: -BASE_EDGE_SIZE,
   },
-  [DIRECTIONS.SEPT]: {
+  [DIRECTIONS.SW]: {
     x: -BASE_EDGE_SIZE * COS_30,
     y: -BASE_EDGE_SIZE * SIN_30,
   },
-  [DIRECTIONS.HUIT]: {
+  [DIRECTIONS.WS]: {
     x: -BASE_EDGE_SIZE * SIN_30,
     y: -BASE_EDGE_SIZE * COS_30,
   },
-  [DIRECTIONS.NEUF]: {
+  [DIRECTIONS.W]: {
     x: -BASE_EDGE_SIZE,
     y: 0,
   },
-  [DIRECTIONS.DIX]: {
+  [DIRECTIONS.WN]: {
     x: -BASE_EDGE_SIZE * COS_30,
     y: BASE_EDGE_SIZE * SIN_30,
   },
-  [DIRECTIONS.ONZE]: {
+  [DIRECTIONS.NW]: {
     x: -BASE_EDGE_SIZE * SIN_30,
     y: BASE_EDGE_SIZE * COS_30,
   },
