@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../global.css";
-import ILayout from "../_interfaces/Layout";
+import LayoutModel from "../_models/Layout";
 import NodeModel from "../_interfaces/Node";
 import Coords from "../_models/Coords";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
@@ -16,7 +16,7 @@ function App() {
   const nodes = useAppSelector(nodesSelector);
   const dispatch = useAppDispatch();
   /** WINDOW DIMENSIONS */
-  const [layout, setLayout] = useState<ILayout>({
+  const [layout, setLayout] = useState<LayoutModel>({
     height: window.innerHeight,
     width: window.innerWidth,
   });
