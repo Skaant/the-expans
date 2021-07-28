@@ -1,8 +1,9 @@
 import * as React from "react";
-import { DIRECTIONS, DIRECTIONS_MODIFIERS } from "../_data/directions";
+import { DIRECTIONS } from "../_data/directions";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
 import NodeModel from "../_interfaces/Node";
 import IOrigin from "../_interfaces/Origin";
+import NodeSlot from "./NodeSlot";
 
 function Node({
   node,
@@ -15,32 +16,35 @@ function Node({
   selected: boolean;
   select: (selected?: NodeModel) => void;
 }) {
-  const { x: oX, y: oY } = origin;
-  const { id, x: nX, y: nY } = node;
-  const x = oX + nX;
-  const y = oY + nY;
+  const { x: originX, y: originY } = origin;
+  const { id, x: nodeX, y: nodeY } = node;
+  const displayX = originX + nodeX;
+  const displayY = originY + nodeY;
   return (
     <g onClick={() => select(node)}>
-      <text x={x} y={y - 70} textAnchor="middle">
+      <text x={displayX} y={displayY - 70} textAnchor="middle">
         {id}
       </text>
       <circle
-        cx={x}
-        cy={y}
+        cx={displayX}
+        cy={displayY}
         r={BASE_NODE_RADIUS * 2}
         style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
       />
       {selected &&
         Object.values(DIRECTIONS).map((direction) => {
-          const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
-          return (
-            <circle
-              key={`id-${direction}`}
-              cx={x + modX}
-              cy={y + modY}
-              r={BASE_NODE_RADIUS / 2}
-            ></circle>
-          );
+          return <NodeSlot
+            key={`${id}-${direction}`}
+            parent={{
+              x: nodeX,
+              y: nodeY
+            }}
+            direction={direction}
+            display={{
+              x: displayX,
+              y: displayY
+            }}
+          />
         })}
     </g>
   );
