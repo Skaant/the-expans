@@ -23,7 +23,12 @@ function Node({
   const displayY = originY + nodeY;
   const building = buildingId && buildings[buildingId];
   return (
-    <g onClick={() => select(node)}>
+    <g
+      onClick={(ev) => {
+        ev.stopPropagation();
+        select(node);
+      }}
+    >
       <Building
         nodeId={id}
         x={displayX}
