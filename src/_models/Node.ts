@@ -1,11 +1,11 @@
+import Coords from "./Coords";
+
 enum NODE_BUILDINGS {
   FOUNDATION_STONE = "foundation-stone",
 }
 
-interface NodeModel {
+type NodeModel = Coords & {
   id: string;
-  x: number;
-  y: number;
   building?: NODE_BUILDINGS;
 }
 
