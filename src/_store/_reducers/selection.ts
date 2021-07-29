@@ -14,10 +14,11 @@ export const selectionSlice = createSlice({
   initialState,
   reducers: {
     select: (state, action: PayloadAction<SelectPayload>) => {
+      const { current } = state;
       const { selection } = action.payload;
       return {
         ...state,
-        current: selection,
+        current: selection?.id === current?.id ? undefined : selection,
       };
     },
   },
