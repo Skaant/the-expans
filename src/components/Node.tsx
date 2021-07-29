@@ -35,10 +35,7 @@ function Node({
         Object.values(DIRECTIONS).map((direction) => {
           return <NodeSlot
             key={`${id}-${direction}`}
-            parent={{
-              x: nodeX,
-              y: nodeY
-            }}
+            source={node}
             direction={direction}
             display={{
               x: displayX,
