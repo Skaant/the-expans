@@ -11,29 +11,28 @@ export const edgesSlice = createSlice({
   name: "edges",
   initialState,
   reducers: {},
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder.addCase(addNode, (state, action) => {
-      const {source, node} = action.payload
+      const { source, node } = action.payload;
       return [
         ...state,
         {
-          id: 'azeaze',
+          id: "path",
           a: {
             x: source.x,
-            y: source.y
+            y: source.y,
           },
           b: {
             x: node.x,
-            y: node.y
-          }
-        }
-      ]
-    })
+            y: node.y,
+          },
+        },
+      ];
+    }),
 });
 
 // export const {} = edgesSlice.actions;
 
-export const edgesSelector = (state: RootState) =>
-  state.edges;
+export const edgesSelector = (state: RootState) => state.edges;
 
 export default edgesSlice.reducer;
