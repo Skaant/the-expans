@@ -2,14 +2,16 @@ import { AddNodePayload } from "../_actions/nodes";
 import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { BUILDINGS } from "../../_data/buildings";
 
 export type NodesState = NodeModel[];
 
 const initialState: NodesState = [
   {
-    id: "HOLY CITY of Zumbaba",
+    id: "8887987",
     x: 40,
     y: 80,
+    buildingId: BUILDINGS.HOLY_CITY,
   },
 ];
 
@@ -19,7 +21,7 @@ export const nodesSlice = createSlice({
   reducers: {
     addNode: (state, action: PayloadAction<AddNodePayload>) => [
       ...state,
-      action.payload.node
+      action.payload.node,
     ],
   },
 });
