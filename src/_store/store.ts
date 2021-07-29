@@ -2,11 +2,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import selectionReducer from "./_reducers/selection";
 import nodesReducer from "./_reducers/nodes";
+import edgesReducer from "./_reducers/edges";
 
 export const store = configureStore({
   reducer: {
     selection: selectionReducer,
     nodes: nodesReducer,
+    edges: edgesReducer
   },
 });
 
