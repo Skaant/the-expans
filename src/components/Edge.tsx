@@ -19,7 +19,7 @@ function Edge({
     <g>
       <text
         x={displayAX + (bX - aX) / 2}
-        y={displayAY + (bY - aY) / 2 - 70}
+        y={displayAY + (bY - aY) / 2 - 35}
         textAnchor="middle"
       >
         {id}
