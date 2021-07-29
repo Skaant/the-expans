@@ -10,10 +10,13 @@ import {
   select,
 } from "../_store/_reducers/selection";
 import Node from "./Node";
+import { edgesSelector } from "../_store/_reducers/edges";
+import Edge from "./Edge";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
   const nodes = useAppSelector(nodesSelector);
+  const edges = useAppSelector(edgesSelector);
   const dispatch = useAppDispatch();
   /** WINDOW DIMENSIONS */
   const [layout, setLayout] = useState<LayoutModel>({
@@ -48,6 +51,9 @@ function App() {
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${width} ${height}"`}
       >
+        {edges.map((edge) => (
+          <Edge key={edge.id} {...edge} origin={origin} />
+        ))}
         {nodes.map((node) => (
           <Node
             key={node.id}
