@@ -16,33 +16,35 @@ export default {
     outputs: [
       {
         ressourceId: RESSOURCES.FAITH,
-        type: 'static',
-        amount: 4  
+        type: "static",
+        amount: 4,
       },
       {
         ressourceId: RESSOURCES.DATA,
-        type: 'relative',
+        type: "relative",
         amount: 0.5,
-        relativeTo: RESSOURCES.ZUMS
+        relativeTo: RESSOURCES.ZUMS,
       },
       {
         ressourceId: RESSOURCES.ABS,
-        type: 'relative',
+        type: "relative",
         amount: 1,
-        relativeTo: BUILDINGS.SHRINE
-      }
-    ]
+        relativeTo: BUILDINGS.SHRINE,
+      },
+    ],
   },
   [BUILDINGS.SHRINE]: {
     id: BUILDINGS.SHRINE,
     name: "SHRINE",
-    outputs: [{
-      ressourceId: RESSOURCES.FAITH,
-      type: 'relative',
-      amount: 1,
-      relativeTo: RESSOURCES.ZUMS,
-      constraints: ['adjacent']
-    }]
+    outputs: [
+      {
+        ressourceId: RESSOURCES.FAITH,
+        type: "relative",
+        amount: 1,
+        relativeTo: RESSOURCES.ZUMS,
+        constraints: ["adjacent"],
+      },
+    ],
   },
   [BUILDINGS.DOM]: {
     id: BUILDINGS.DOM,
@@ -51,22 +53,22 @@ export default {
     outputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
-        type: 'static',
-        amount: 4
+        type: "static",
+        amount: 4,
       },
       {
         ressourceId: RESSOURCES.JING,
-        type: 'static',
-        amount: 3
+        type: "static",
+        amount: 3,
       },
       {
         ressourceId: RESSOURCES.SPARK,
-        type: 'relative',
+        type: "relative",
         amount: 1,
         relativeTo: BUILDINGS.SHRINE,
-        constraints: ['adjacent']
-      }
-    ]
+        constraints: ["adjacent"],
+      },
+    ],
   },
   [BUILDINGS.GRAV_POINT]: {
     id: BUILDINGS.GRAV_POINT,
@@ -75,21 +77,21 @@ export default {
     outputs: [
       {
         ressourceId: RESSOURCES.BIO,
-        type: 'static',
-        amount: 5
+        type: "static",
+        amount: 5,
       },
       {
         ressourceId: RESSOURCES.GENO,
-        type: 'static',
-        amount: 2
+        type: "static",
+        amount: 2,
       },
       {
         ressourceId: RESSOURCES.DATA,
-        type: 'relative',
+        type: "relative",
         amount: 1,
         relativeTo: RESSOURCES.ZUMS,
-        constraints: ['adjacent']
-      }
-    ]
+        constraints: ["adjacent"],
+      },
+    ],
   },
 } as { [key in BUILDINGS]: BuildingDataModel };
