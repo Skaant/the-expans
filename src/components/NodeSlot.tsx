@@ -33,8 +33,8 @@ function NodeSlot({
             source,
             node: {
               id: nanoid(),
-              x: source.x + modX,
-              y: source.y + modY,
+              x: Math.round(source.x + modX),
+              y: Math.round(source.y + modY),
               buildingId: [
                 BUILDINGS.SHRINE,
                 BUILDINGS.DOM,
