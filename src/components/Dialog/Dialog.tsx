@@ -19,7 +19,7 @@ function Dialog({ selection }: { selection: NodeModel }) {
           }}
         >
           <p>NODE</p>
-          <h2>{selection.id}</h2>
+          <h2 style={{ wordBreak: "break-all" }}>{selection.id}</h2>
           <p>{`${selection.x}, ${selection.y}`}</p>
         </div>
         <div
