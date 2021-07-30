@@ -12,6 +12,7 @@ import {
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
+import Dialog from "./Dialog/Dialog";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -65,6 +66,7 @@ function App() {
           />
         ))}
       </svg>
+      {selection && <Dialog selection={selection} />}
     </div>
   );
 }
