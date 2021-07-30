@@ -41,7 +41,7 @@ function Dialog({ selection }: { selection: NodeModel }) {
                     ? output.amount
                     : `${output.amount} / ${output.relativeTo}`}
                   {output.constraints
-                    ? `(${output.constraints.join(", ")})`
+                    ? ` (${output.constraints.join(", ")})`
                     : ""}
                 </p>
               ))}
