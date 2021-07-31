@@ -1,6 +1,6 @@
 import { AddNodePayload } from "../_actions/nodes";
 import NodeModel from "../../_models/Node";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { BUILDINGS } from "../../_data/buildings";
 
@@ -8,10 +8,10 @@ export type NodesState = NodeModel[];
 
 const initialState: NodesState = [
   {
-    id: "8887987",
-    x: 40,
-    y: 80,
-    buildingId: BUILDINGS.HOLY_CITY,
+    id: nanoid(),
+    x: 0,
+    y: 0,
+    buildingId: BUILDINGS.KOLOS_SEED,
   },
 ];
 
