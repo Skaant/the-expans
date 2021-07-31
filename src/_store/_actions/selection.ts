@@ -1,6 +1,5 @@
 import NodeModel from "../../_models/Node";
-
-export const SELECT = "SELECT";
+import NodeSlotModel from "../../_models/NodeSlot";
 export interface SelectPayload {
-  selection?: NodeModel;
+  selection?: NodeModel | NodeSlotModel;
 }
