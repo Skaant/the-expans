@@ -12,7 +12,7 @@ import {
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
-import Dialog from "./Dialog/Dialog";
+import Dialog from "./Selection/Selection";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);

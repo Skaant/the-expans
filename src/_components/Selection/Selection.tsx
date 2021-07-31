@@ -2,7 +2,7 @@ import * as React from "react";
 import buildingsData from "../../_data/buildings";
 import NodeModel from "../../_models/Node";
 
-function Dialog({ selection }: { selection: NodeModel }) {
+function Selection({ selection }: { selection: NodeModel }) {
   const building = selection.buildingId && buildingsData[selection.buildingId];
   return (
     <div
@@ -53,4 +53,4 @@ function Dialog({ selection }: { selection: NodeModel }) {
   );
 }
 
-export default Dialog;
+export default Selection;
