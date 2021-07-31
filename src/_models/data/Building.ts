@@ -41,6 +41,7 @@ type OutputItem = {
 type BuildingDataModel = {
   id: BUILDINGS;
   name: string;
+  description?: string;
   radiusModifier?: number;
   strokeColor?: string;
   inputs?: InputItem[];
