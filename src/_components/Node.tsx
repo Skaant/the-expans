@@ -37,19 +37,17 @@ function Node({
         selected={selected}
       />
       {selected &&
-        Object.values(DIRECTIONS).map((direction) => {
-          return (
-            <NodeSlot
-              key={`${id}-${direction}`}
-              source={node}
-              direction={direction}
-              display={{
-                x: displayX,
-                y: displayY,
-              }}
-            />
-          );
-        })}
+        Object.values(DIRECTIONS).map((direction) => (
+          <NodeSlot
+            key={`${id}-${direction}`}
+            source={node}
+            direction={direction}
+            display={{
+              x: displayX,
+              y: displayY,
+            }}
+          />
+        ))}
     </g>
   );
 }
