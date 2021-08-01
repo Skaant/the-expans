@@ -16,7 +16,7 @@ const BUILDINGS_DATA = {
     id: BUILDINGS.KOLOS_SEED,
     name: "KOLOS-SEED",
     description:
-      "It felt to the sky, bringing just enough to start a new colony.",
+      "It felt from the sky, bringing just enough to start a new colony.",
     outputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
@@ -100,18 +100,6 @@ const BUILDINGS_DATA = {
         ressourceId: RESSOURCES.ZUMS,
         type: "static",
         amount: 6,
-      },
-      {
-        ressourceId: RESSOURCES.JING,
-        type: "static",
-        amount: 3,
-      },
-      {
-        ressourceId: RESSOURCES.SPARK,
-        type: "relative",
-        amount: 1,
-        relativeTo: BUILDINGS.SHRINE,
-        constraints: ["adjacent"],
       },
     ],
   },
