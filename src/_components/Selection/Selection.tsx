@@ -1,9 +1,21 @@
 import * as React from "react";
 import buildingsData from "../../_data/buildings";
 import NodeModel from "../../_models/Node";
+import { Selection as SelectionModel } from "../../_store/_reducers/selection";
+import SelectionBuilding from "./SelectionBuilding";
+import SelectionNode from "./SelectionNode";
+import SelectionNodeSlot from "./SelectionNodeSlot";
+import SelectionNodeSlotMenu from "./SelectionNodeSlotMenu";
 
-function Selection({ selection }: { selection: NodeModel }) {
-  const building = selection.buildingId && buildingsData[selection.buildingId];
+function Selection({ selection }: { selection: SelectionModel }) {
+  const { item, type } = selection;
+  let building;
+  if (type === "node") {
+    const node = item as NodeModel;
+    if (node.buildingId) {
+      building = buildingsData[node.buildingId];
+    }
+  }
   return (
     <div
       style={{ position: "absolute", bottom: 0, width: "100%", height: "39%" }}
@@ -18,9 +30,11 @@ function Selection({ selection }: { selection: NodeModel }) {
             textAlign: "right",
           }}
         >
-          <p>NODE</p>
-          <h2 style={{ wordBreak: "break-all" }}>{selection.id}</h2>
-          <p>{`${selection.x}, ${selection.y}`}</p>
+          {type === "node" ? (
+            <SelectionNode selection={selection} />
+          ) : (
+            <SelectionNodeSlot selection={selection} />
+          )}
         </div>
         <div
           style={{
@@ -30,23 +44,8 @@ function Selection({ selection }: { selection: NodeModel }) {
             padding: "4vh 8vw",
           }}
         >
-          {building && (
-            <>
-              <p>BUILDING</p>
-              <h2>{building.name}</h2>
-              {building.outputs?.map((output, index) => (
-                <p key={`${building.id}-${index}`}>
-                  <b>{output.ressourceId} :</b>{" "}
-                  {output.type === "static"
-                    ? output.amount
-                    : `${output.amount} / ${output.relativeTo}`}
-                  {output.constraints
-                    ? ` (${output.constraints.join(", ")})`
-                    : ""}
-                </p>
-              ))}
-            </>
-          )}
+          {building && <SelectionBuilding building={building} />}
+          {type === "node-slot" && <SelectionNodeSlotMenu />}
         </div>
       </div>
     </div>
