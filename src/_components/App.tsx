@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../global.css";
 import LayoutModel from "../_models/Layout";
-import NodeModel from "../_models/Node";
 import Coords from "../_models/Coords";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import {
   currentSelectionSelector,
   select,
+  Selection,
 } from "../_store/_reducers/selection";
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
@@ -61,8 +61,10 @@ function App() {
             key={node.id}
             origin={origin}
             node={node}
-            selected={selection === node}
-            select={(selection?: NodeModel) => dispatch(select({ selection }))}
+            selected={selection?.item === node}
+            select={(selection?: Selection) =>
+              dispatch(select(selection ? { next: selection } : {}))
+            }
           />
         ))}
       </svg>

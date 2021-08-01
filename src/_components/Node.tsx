@@ -5,6 +5,7 @@ import Coords from "../_models/Coords";
 import NodeSlot from "./NodeSlot";
 import buildings from "../_data/buildings";
 import Building from "./Building";
+import { Selection } from "../_store/_reducers/selection";
 
 function Node({
   node,
@@ -15,7 +16,7 @@ function Node({
   node: NodeModel;
   origin: Coords;
   selected: boolean;
-  select: (selected?: NodeModel) => void;
+  select: (selection?: Selection) => void;
 }) {
   const { x: originX, y: originY } = origin;
   const { id, x: nodeX, y: nodeY, buildingId } = node;
@@ -26,7 +27,10 @@ function Node({
     <g
       onClick={(ev) => {
         ev.stopPropagation();
-        select(node);
+        select({
+          item: node,
+          type: "node",
+        });
       }}
     >
       <Building
