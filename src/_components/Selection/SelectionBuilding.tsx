@@ -6,6 +6,7 @@ function SelectionBuilding({ building }: { building: BuildingDataModel }) {
     <>
       <p>BUILDING</p>
       <h2>{building.name}</h2>
+      <p>{building.description}</p>
       {building.outputs?.map((output, index) => (
         <p key={`${building.id}-${index}`}>
           <b>{output.ressourceId} :</b>{" "}
