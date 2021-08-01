@@ -1,7 +1,19 @@
+import { nanoid } from "@reduxjs/toolkit";
 import * as React from "react";
 import BUILDINGS_DATA, { BUILDINGS } from "../../_data/buildings";
+import Coords from "../../_models/Coords";
+import NodeModel from "../../_models/Node";
+import { useAppDispatch } from "../../_store/hooks";
+import { addNode } from "../../_store/_reducers/nodes";
 
-function SelectionNodeSlotMenu() {
+function SelectionNodeSlotMenu({
+  source,
+  x,
+  y,
+}: Coords & {
+  source: NodeModel;
+}) {
+  const dispatch = useAppDispatch();
   return (
     <>
       <p>CONSTRUIRE UN BÂTIMENT</p>
@@ -17,7 +29,21 @@ function SelectionNodeSlotMenu() {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 padding: "4px",
+                cursor: "pointer",
               }}
+              onClick={() =>
+                dispatch(
+                  addNode({
+                    source,
+                    node: {
+                      id: nanoid(),
+                      x,
+                      y,
+                      buildingId,
+                    },
+                  })
+                )
+              }
             >
               <div>
                 <h3>{name}</h3>
@@ -27,7 +53,7 @@ function SelectionNodeSlotMenu() {
                 type="button"
                 style={{ width: "100%", background: "black", color: "white" }}
               >
-                CONSTRUIRE
+                BUILD
               </button>
             </div>
           );
