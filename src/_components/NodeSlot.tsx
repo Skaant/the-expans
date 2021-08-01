@@ -32,8 +32,8 @@ function NodeSlot({
               item: {
                 id: `${source.id}-${direction}`,
                 source,
-                x,
-                y,
+                x: source.x + modX,
+                y: source.y + modY,
               },
               type: "node-slot",
             },
