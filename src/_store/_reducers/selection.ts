@@ -2,10 +2,18 @@ import { SelectPayload } from "../_actions/selection";
 import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import NodeSlotModel from "../../_models/NodeSlot";
 
-export interface SelectionState {
-  current?: NodeModel;
-}
+export type SelectionType = "node" | "node-slot";
+
+export type Selection = {
+  item: NodeModel | NodeSlotModel;
+  type: SelectionType;
+};
+
+export type SelectionState = {
+  current?: Selection;
+};
 
 const initialState: SelectionState = {};
 
@@ -15,10 +23,10 @@ export const selectionSlice = createSlice({
   reducers: {
     select: (state, action: PayloadAction<SelectPayload>) => {
       const { current } = state;
-      const { selection } = action.payload;
+      const { next } = action.payload;
       return {
         ...state,
-        current: selection?.id === current?.id ? undefined : selection,
+        current: next?.item.id === current?.item.id ? undefined : next,
       };
     },
   },
