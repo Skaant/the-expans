@@ -11,7 +11,7 @@ export enum BUILDINGS {
   HOLY_CITY = "holy-city",
 }
 
-export default {
+const BUILDINGS_DATA = {
   [BUILDINGS.KOLOS_SEED]: {
     id: BUILDINGS.KOLOS_SEED,
     name: "KOLOS-SEED",
@@ -177,3 +177,5 @@ export default {
     ],
   },
 } as { [key in BUILDINGS]: BuildingDataModel };
+
+export default BUILDINGS_DATA;
