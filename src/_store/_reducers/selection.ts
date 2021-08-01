@@ -3,6 +3,7 @@ import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import NodeSlotModel from "../../_models/NodeSlot";
+import { addNode } from "./nodes";
 
 export type SelectionType = "node" | "node-slot";
 
@@ -30,6 +31,17 @@ export const selectionSlice = createSlice({
       };
     },
   },
+  extraReducers: (builder) =>
+    builder.addCase(addNode, (state, action) => {
+      const { node } = action.payload;
+      return {
+        ...state,
+        current: {
+          item: node,
+          type: "node",
+        },
+      };
+    }),
 });
 
 export const { select } = selectionSlice.actions;
