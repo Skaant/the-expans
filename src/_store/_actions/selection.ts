@@ -1,5 +1,4 @@
-import NodeModel from "../../_models/Node";
-import NodeSlotModel from "../../_models/NodeSlot";
+import { Selection } from "../_reducers/selection";
 export interface SelectPayload {
-  selection?: NodeModel | NodeSlotModel;
+  next?: Selection;
 }
