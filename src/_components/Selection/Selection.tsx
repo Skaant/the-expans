@@ -1,6 +1,7 @@
 import * as React from "react";
 import buildingsData from "../../_data/buildings";
 import NodeModel from "../../_models/Node";
+import NodeSlotModel from "../../_models/NodeSlot";
 import { Selection as SelectionModel } from "../../_store/_reducers/selection";
 import SelectionBuilding from "./SelectionBuilding";
 import SelectionNode from "./SelectionNode";
@@ -45,7 +46,9 @@ function Selection({ selection }: { selection: SelectionModel }) {
           }}
         >
           {building && <SelectionBuilding building={building} />}
-          {type === "node-slot" && <SelectionNodeSlotMenu />}
+          {type === "node-slot" && (
+            <SelectionNodeSlotMenu {...(item as NodeSlotModel)} />
+          )}
         </div>
       </div>
     </div>
