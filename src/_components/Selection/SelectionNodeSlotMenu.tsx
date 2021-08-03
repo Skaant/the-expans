@@ -16,8 +16,7 @@ function SelectionNodeSlotMenu({
   const dispatch = useAppDispatch();
   return (
     <>
-      <p>CONSTRUIRE UN BÂTIMENT</p>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         {[BUILDINGS.WELL, BUILDINGS.FARM, BUILDINGS.DOM].map((buildingId) => {
           const { name, inputs, outputs } = BUILDINGS_DATA[buildingId];
           return (

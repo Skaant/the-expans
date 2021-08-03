@@ -19,12 +19,17 @@ function Selection({ selection }: { selection: SelectionModel }) {
   }
   return (
     <div
-      style={{ position: "absolute", bottom: 0, width: "100%", height: "39%" }}
+      style={{
+        position: "absolute",
+        bottom: 0,
+        width: "100%",
+        height: "max-content",
+      }}
     >
       <div style={{ display: "flex", height: "100%" }}>
         <div
           style={{
-            width: "39%",
+            width: "max-content",
             background: "black",
             color: "white",
             padding: "4vh 8vw",
@@ -39,7 +44,7 @@ function Selection({ selection }: { selection: SelectionModel }) {
         </div>
         <div
           style={{
-            width: "61%",
+            width: "auto",
             background: "white",
             color: "black",
             padding: "4vh 8vw",
