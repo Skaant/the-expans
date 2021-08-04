@@ -33,13 +33,23 @@ function TopBar() {
         top: 0,
         width: "100%",
         height: "max-content",
+        display: "flex",
+        background: "black",
+        color: "white",
+        padding: "8px",
+        boxSizing: "border-box",
       }}
     >
-      {Object.entries(ressources).map(([ressourceId, amount]) => (
-        <div key={ressourceId}>
-          {ressourceId}: {amount}
-        </div>
-      ))}
+      {Object.entries(ressources)
+        .filter(([, amount]) => amount)
+        .map(([ressourceId, amount]) => (
+          <div
+            key={ressourceId}
+            style={{ margin: "0 8px", textTransform: "uppercase" }}
+          >
+            {ressourceId}: <b>{amount}</b>
+          </div>
+        ))}
     </div>
   );
 }
