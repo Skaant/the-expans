@@ -28,17 +28,14 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
-        type: "static",
         amount: 6,
       },
       {
         ressourceId: RESSOURCES.JING,
-        type: "static",
         amount: 2,
       },
       {
         ressourceId: RESSOURCES.WA,
-        type: "static",
         amount: 2,
       },
     ],
@@ -68,7 +65,6 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.WA,
-        type: "static",
         amount: 4,
       },
     ],
@@ -96,7 +92,6 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.JING,
-        type: "static",
         amount: 4,
       },
     ],
@@ -126,7 +121,6 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
-        type: "static",
         amount: 6,
       },
     ],
@@ -138,18 +132,18 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.FAITH,
-        type: "static",
+        
         amount: 4,
       },
       {
         ressourceId: RESSOURCES.DATA,
-        type: "relative",
+        
         amount: 0.5,
         relativeTo: RESSOURCES.ZUMS,
       },
       {
         ressourceId: RESSOURCES.ABS,
-        type: "relative",
+        
         amount: 1,
         relativeTo: BUILDINGS.SHRINE,
       },
@@ -161,7 +155,7 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.FAITH,
-        type: "relative",
+        
         amount: 1,
         relativeTo: RESSOURCES.ZUMS,
         constraints: ["adjacent"],
@@ -175,17 +169,17 @@ const BUILDINGS_DATA = {
     outputs: [
       {
         ressourceId: RESSOURCES.JING,
-        type: "static",
+        
         amount: 5,
       },
       {
         ressourceId: RESSOURCES.GENO,
-        type: "static",
+        
         amount: 2,
       },
       {
         ressourceId: RESSOURCES.DATA,
-        type: "relative",
+        
         amount: 1,
         relativeTo: RESSOURCES.ZUMS,
         constraints: ["adjacent"],
