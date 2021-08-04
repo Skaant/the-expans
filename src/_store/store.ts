@@ -1,14 +1,16 @@
 // https://github.com/reduxjs/cra-template-redux-typescript/
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import appReducer from "./_reducers/app";
 import selectionReducer from "./_reducers/selection";
 import nodesReducer from "./_reducers/nodes";
 import edgesReducer from "./_reducers/edges";
 
 export const store = configureStore({
   reducer: {
+    app: appReducer,
     selection: selectionReducer,
     nodes: nodesReducer,
-    edges: edgesReducer
+    edges: edgesReducer,
   },
 });
 
