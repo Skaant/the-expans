@@ -1,10 +1,29 @@
-import { nanoid } from "@reduxjs/toolkit";
 import * as React from "react";
-import BUILDINGS_DATA, { BUILDINGS } from "../../_data/buildings";
+import { nanoid } from "@reduxjs/toolkit";
+import { LANGS } from "../../_data/langs";
 import Coords from "../../_models/Coords";
+import LangDictionnary from "../../_models/langs/LangDictionary";
 import NodeModel from "../../_models/Node";
-import { useAppDispatch } from "../../_store/hooks";
+import { useAppDispatch, useAppSelector } from "../../_store/hooks";
+import { langSelector } from "../../_store/_reducers/app";
 import { addNode } from "../../_store/_reducers/nodes";
+
+const langs: LangDictionnary = {
+  title: {
+    [LANGS.FR]: "Emplacement de noeud",
+    [LANGS.EN]: "Node slot",
+  },
+  description: {
+    [LANGS.FR]:
+      "Explorer un nouveau noeud découvre son chemin + permet d'y construire un bâtiment.",
+    [LANGS.EN]:
+      "Exploring a new node discovers its path + allows to build a building there.",
+  },
+  addNode: {
+    [LANGS.FR]: "Explorer l'emplacement de noeud",
+    [LANGS.EN]: "Explore node slot",
+  },
+};
 
 function SelectionNodeSlotMenu({
   source,
@@ -13,60 +32,28 @@ function SelectionNodeSlotMenu({
 }: Coords & {
   source: NodeModel;
 }) {
+  const lang = useAppSelector(langSelector);
   const dispatch = useAppDispatch();
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-        {[BUILDINGS.WELL, BUILDINGS.FARM, BUILDINGS.DOM].map((buildingId) => {
-          const { name, inputs, outputs } = BUILDINGS_DATA[buildingId];
-          return (
-            <div
-              key={buildingId}
-              style={{
-                width: "33%",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "4px",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                dispatch(
-                  addNode({
-                    source,
-                    node: {
-                      id: nanoid(),
-                      x,
-                      y,
-                      buildingId,
-                    },
-                  })
-                )
-              }
-            >
-              <div>
-                <h3>{name}</h3>
-                {inputs?.map(({ ressourceId, amount }) => (
-                  <p key={ressourceId + "-" + amount} style={{ margin: 0 }}>
-                    -{amount} {ressourceId}
-                  </p>
-                ))}
-                {outputs?.map(({ ressourceId, amount }) => (
-                  <p key={ressourceId + "-" + amount} style={{ margin: 0 }}>
-                    +{amount} {ressourceId}
-                  </p>
-                ))}
-              </div>
-              <button
-                type="button"
-                style={{ width: "100%", background: "black", color: "white" }}
-              >
-                BUILD
-              </button>
-            </div>
-          );
-        })}
-      </div>
+      <p>{langs["title"][lang]}</p>
+      <p>{langs["description"][lang]}</p>
+      <button
+        onClick={() =>
+          dispatch(
+            addNode({
+              source,
+              node: {
+                id: nanoid(),
+                x,
+                y,
+              },
+            })
+          )
+        }
+      >
+        {langs["addNode"][lang]}
+      </button>
     </>
   );
 }

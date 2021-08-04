@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LANGS } from "../../_data/langs";
 import BuildingDataModel from "../../_models/data/Building";
-import LangDictionnary from "../../_models/LangDictionary";
+import LangDictionnary from "../../_models/langs/LangDictionary";
 import { useAppSelector } from "../../_store/hooks";
 import { langSelector } from "../../_store/_reducers/app";
 
@@ -18,9 +18,9 @@ function SelectionBuilding({ building }: { building: BuildingDataModel }) {
   return (
     <div onClick={() => setCollapse(!collapse)}>
       <h2>
-        {langs["building"][lang]} <b>{building.name}</b>
+        {langs["building"][lang]} <b>{building.name[lang]}</b>
       </h2>
-      <p>{building.description}</p>
+      <p>{building.description[lang]}</p>
       {!collapse && (
         <>
           {building.outputs?.map((output, index) => (
