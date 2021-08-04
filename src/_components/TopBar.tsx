@@ -58,7 +58,7 @@ function TopBar() {
           ))}
       </div>
       <div style={{ display: "flex" }}>
-        {Object.keys(LANGS).map((_lang) => (
+        {Object.values(LANGS).map((_lang) => (
           <div
             style={{
               margin: "0 8px",
