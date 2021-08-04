@@ -7,6 +7,7 @@ import buildings from "../_data/buildings";
 import Building from "./Building";
 import { Selection } from "../_store/_reducers/selection";
 import NodeSlotModel from "../_models/NodeSlot";
+import { BASE_NODE_RADIUS } from "../_data/primordials";
 
 function Node({
   node,
@@ -47,6 +48,12 @@ function Node({
           selected={true}
         />
       )}
+      <circle
+        cx={displayX}
+        cy={displayY}
+        r={BASE_NODE_RADIUS}
+        style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
+      />
       <Building
         nodeId={id}
         x={displayX}
