@@ -1,16 +1,7 @@
 import { BUILDINGS } from "../../_data/buildings";
-import RESSOURCES from "../../_data/ressources";
+
 import LangAlt from "../langs/LangAlt";
-
-type InputItem = {
-  ressourceId: RESSOURCES;
-  amount: number;
-};
-
-type OutputItem = {
-  ressourceId: RESSOURCES;
-  amount: number;
-};
+import ResourcePut from "./RessourcePut";
 
 type BuildingDataModel = {
   id: BUILDINGS;
@@ -18,8 +9,8 @@ type BuildingDataModel = {
   description: LangAlt;
   radiusModifier?: number;
   strokeColor?: string;
-  inputs?: InputItem[];
-  outputs?: OutputItem[];
+  inputs?: ResourcePut[];
+  outputs?: ResourcePut[];
 };
 
 export default BuildingDataModel;
