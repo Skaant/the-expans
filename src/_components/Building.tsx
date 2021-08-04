@@ -16,8 +16,8 @@ function Building({
   const lang = useAppSelector(langSelector);
   return (
     <>
-      <text x={x} y={y - 70} textAnchor="middle">
-        {building ? building.name[lang] : nodeId}
+      <text x={x} y={y - 48} textAnchor="middle">
+        {building ? building.name[lang] : ""}
       </text>
     </>
   );
