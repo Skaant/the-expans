@@ -15,7 +15,7 @@ function SelectionNode({ selection }: { selection: Selection }) {
   const lang = useAppSelector(langSelector);
   return (
     <>
-      <p>{langs["nodeSlot"][lang]}</p>
+      <p className="selection-title">{langs["nodeSlot"][lang]}</p>
       <h2>{`x: ${selection.item.x}, y: ${selection.item.y}`}</h2>
     </>
   );

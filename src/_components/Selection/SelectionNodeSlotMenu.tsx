@@ -9,10 +9,6 @@ import { langSelector } from "../../_store/_reducers/app";
 import { addNode } from "../../_store/_reducers/nodes";
 
 const langs: LangDictionnary = {
-  title: {
-    [LANGS.FR]: "Emplacement de noeud",
-    [LANGS.EN]: "Node slot",
-  },
   description: {
     [LANGS.FR]:
       "Explorer un nouveau noeud découvre son chemin + permet d'y construire un bâtiment.",
@@ -36,7 +32,6 @@ function SelectionNodeSlotMenu({
   const dispatch = useAppDispatch();
   return (
     <>
-      <p>{langs["title"][lang]}</p>
       <p>{langs["description"][lang]}</p>
       <button
         onClick={() =>

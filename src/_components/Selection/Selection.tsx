@@ -7,6 +7,7 @@ import SelectionBuilding from "./SelectionBuilding";
 import SelectionNode from "./SelectionNode";
 import SelectionNodeSlot from "./SelectionNodeSlot";
 import SelectionNodeSlotMenu from "./SelectionNodeSlotMenu";
+import "./Selection.css";
 
 function Selection({ selection }: { selection: SelectionModel }) {
   const { item, type } = selection;
@@ -19,6 +20,7 @@ function Selection({ selection }: { selection: SelectionModel }) {
   }
   return (
     <div
+      id="selection"
       style={{
         position: "absolute",
         bottom: 0,

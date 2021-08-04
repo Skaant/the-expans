@@ -17,9 +17,8 @@ function SelectionBuilding({ building }: { building: BuildingDataModel }) {
   const [collapse, setCollapse] = useState(true);
   return (
     <div onClick={() => setCollapse(!collapse)}>
-      <h2>
-        {langs["building"][lang]} <b>{building.name[lang]}</b>
-      </h2>
+      <p className="selection-title">{langs["building"][lang]}</p>
+      <h2>{building.name[lang]}</h2>
       <p>{building.description[lang]}</p>
       {!collapse && (
         <>

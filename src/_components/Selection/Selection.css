@@ -1,0 +1,5 @@
+#selection p.selection-title {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
