@@ -1,5 +1,6 @@
 import { BUILDINGS } from "../../_data/buildings";
 import RESSOURCES from "../../_data/ressources";
+import LangAlt from "../langs/LangAlt";
 
 type ItemRelativeConstraints =
   /** `adjacent` can be used both with
@@ -40,8 +41,8 @@ type OutputItem = {
 
 type BuildingDataModel = {
   id: BUILDINGS;
-  name: string;
-  description?: string;
+  name: LangAlt;
+  description: LangAlt;
   radiusModifier?: number;
   strokeColor?: string;
   inputs?: InputItem[];
