@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import EdgeModel from "../../_models/Edge";
 import { addNode } from "./nodes";
+import { EDGE_FEATURES } from "../../_data/edges";
 
 export type EdgesState = EdgeModel[];
 
@@ -17,7 +18,7 @@ export const edgesSlice = createSlice({
       return [
         ...state,
         {
-          id: "path",
+          id: nanoid(),
           a: {
             x: source.x,
             y: source.y,
@@ -26,6 +27,12 @@ export const edgesSlice = createSlice({
             x: node.x,
             y: node.y,
           },
+          features:
+            Math.random() * 5 > 2
+              ? Math.random() * 2 > 1
+                ? [EDGE_FEATURES.POND]
+                : [EDGE_FEATURES.BERRIES]
+              : undefined,
         },
       ];
     }),
