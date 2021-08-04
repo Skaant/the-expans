@@ -10,37 +10,54 @@ function NodeSlot({
   source,
   direction,
   display,
+  selected = false,
 }: {
   source: NodeModel;
   direction: DIRECTIONS;
   display: Coords;
+  selected?: boolean;
 }) {
   const dispatch = useAppDispatch();
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
   const x = display.x + modX;
   const y = display.y + modY;
   return (
-    <circle
-      cx={x}
-      cy={y}
-      r={BASE_NODE_RADIUS / 2}
-      onClick={(ev) => {
-        ev.stopPropagation();
-        dispatch(
-          select({
-            next: {
-              item: {
-                id: `${source.id}-${direction}`,
-                source,
-                x: source.x + modX,
-                y: source.y + modY,
+    <>
+      {selected && (
+        <line
+          x1={x}
+          y1={y}
+          x2={display.x}
+          y2={display.y}
+          strokeDasharray="5"
+          stroke="red"
+          strokeWidth="5"
+        />
+      )}
+      <circle
+        cx={x}
+        cy={y}
+        r={BASE_NODE_RADIUS / 2}
+        onClick={(ev) => {
+          ev.stopPropagation();
+          dispatch(
+            select({
+              next: {
+                item: {
+                  id: `${source.id}-${direction}`,
+                  direction,
+                  source,
+                  x: source.x + modX,
+                  y: source.y + modY,
+                },
+                type: "node-slot",
               },
-              type: "node-slot",
-            },
-          })
-        );
-      }}
-    ></circle>
+            })
+          );
+        }}
+        style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
+      />
+    </>
   );
 }
 
