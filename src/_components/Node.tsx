@@ -6,16 +6,19 @@ import NodeSlot from "./NodeSlot";
 import buildings from "../_data/buildings";
 import Building from "./Building";
 import { Selection } from "../_store/_reducers/selection";
+import NodeSlotModel from "../_models/NodeSlot";
 
 function Node({
   node,
   origin,
   selected,
+  sourcing,
   select,
 }: {
   node: NodeModel;
   origin: Coords;
   selected: boolean;
+  sourcing?: NodeSlotModel;
   select: (selection?: Selection) => void;
 }) {
   const { x: originX, y: originY } = origin;
@@ -33,6 +36,17 @@ function Node({
         });
       }}
     >
+      {sourcing && (
+        <NodeSlot
+          source={node}
+          direction={sourcing.direction}
+          display={{
+            x: displayX,
+            y: displayY,
+          }}
+          selected={true}
+        />
+      )}
       <Building
         nodeId={id}
         x={displayX}

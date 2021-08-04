@@ -13,6 +13,7 @@ import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
 import Dialog from "./Selection/Selection";
+import NodeSlotModel from "../_models/NodeSlot";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -61,7 +62,13 @@ function App() {
             key={node.id}
             origin={origin}
             node={node}
-            selected={selection?.item === node}
+            selected={selection?.type === "node" && selection?.item === node}
+            sourcing={
+              selection?.type === "node-slot" &&
+              (selection?.item as NodeSlotModel).source === node
+                ? (selection?.item as NodeSlotModel)
+                : undefined
+            }
             select={(selection?: Selection) =>
               dispatch(select(selection ? { next: selection } : {}))
             }
