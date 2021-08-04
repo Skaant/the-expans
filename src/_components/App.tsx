@@ -14,6 +14,7 @@ import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
 import Dialog from "./Selection/Selection";
 import NodeSlotModel from "../_models/NodeSlot";
+import TopBar from "./TopBar";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -49,6 +50,7 @@ function App() {
   }, []);
   return (
     <div id="the-expans--app">
+      <TopBar />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${width} ${height}"`}
