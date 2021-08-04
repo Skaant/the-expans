@@ -1,4 +1,5 @@
 import BuildingDataModel from "../_models/data/Building";
+import { LANGS } from "./langs";
 import RESSOURCES from "./ressources";
 
 export enum BUILDINGS {
@@ -14,9 +15,16 @@ export enum BUILDINGS {
 const BUILDINGS_DATA = {
   [BUILDINGS.KOLOS_SEED]: {
     id: BUILDINGS.KOLOS_SEED,
-    name: "KOLOS-SEED",
-    description:
-      "It felt from the sky, bringing just enough to start a new colony.",
+    name: {
+      [LANGS.FR]: "Capsule de colonisation",
+      [LANGS.EN]: "Colonization pod",
+    },
+    description: {
+      [LANGS.FR]:
+        "Elle est tombée du ciel, apportant juste de quoi installer une nouvelle colonie.",
+      [LANGS.EN]:
+        "It felt from the sky, bringing just enough to start a new colony.",
+    },
     outputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
@@ -37,9 +45,16 @@ const BUILDINGS_DATA = {
   },
   [BUILDINGS.WELL]: {
     id: BUILDINGS.WELL,
-    name: "Well",
-    description:
-      "Uses the power of ZUMS and JING to extract WA from the air and ground.",
+    name: {
+      [LANGS.FR]: "Puit",
+      [LANGS.EN]: "Well",
+    },
+    description: {
+      [LANGS.FR]:
+        "Utilise le pouvoir des ZUMS et du JING pour extraire le WE de l'air et du sol.",
+      [LANGS.EN]:
+        "Uses the power of ZUMS and JING to extract WA from the air and ground.",
+    },
     inputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
@@ -60,8 +75,14 @@ const BUILDINGS_DATA = {
   },
   [BUILDINGS.FARM]: {
     id: BUILDINGS.FARM,
-    name: "Farm",
-    description: "ZUMS and WA associate to make the JING grow.",
+    name: {
+      [LANGS.FR]: "Ferme",
+      [LANGS.EN]: "Farm",
+    },
+    description: {
+      [LANGS.FR]: "Les ZUMS et le WA s'associent pour faire pousser le JING.",
+      [LANGS.EN]: "ZUMS and WA associate to make the JING grows.",
+    },
     inputs: [
       {
         ressourceId: RESSOURCES.ZUMS,
@@ -82,8 +103,15 @@ const BUILDINGS_DATA = {
   },
   [BUILDINGS.DOM]: {
     id: BUILDINGS.DOM,
-    name: "DOM",
-    description: "WA and JING offer a comfortable living space for ZUMS.",
+    name: {
+      [LANGS.FR]: "DOM",
+      [LANGS.EN]: "DOM",
+    },
+    description: {
+      [LANGS.FR]:
+        "Le WA et le JING offrent un espace de vie confortable pour les ZUMS.",
+      [LANGS.EN]: "WA and JING offer a comfortable living space for ZUMS.",
+    },
     radiusModifier: 1.5,
     inputs: [
       {
@@ -103,7 +131,7 @@ const BUILDINGS_DATA = {
       },
     ],
   },
-  [BUILDINGS.HOLY_CITY]: {
+  /* [BUILDINGS.HOLY_CITY]: {
     id: BUILDINGS.HOLY_CITY,
     name: "HOLY CITY of Zumbaba",
     radiusModifier: 3,
@@ -163,7 +191,7 @@ const BUILDINGS_DATA = {
         constraints: ["adjacent"],
       },
     ],
-  },
+  }, */
 } as { [key in BUILDINGS]: BuildingDataModel };
 
 export default BUILDINGS_DATA;
