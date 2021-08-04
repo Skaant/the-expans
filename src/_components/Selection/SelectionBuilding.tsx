@@ -22,13 +22,14 @@ function SelectionBuilding({ building }: { building: BuildingDataModel }) {
       <p>{building.description[lang]}</p>
       {!collapse && (
         <>
+          {building.inputs?.map((input, index) => (
+            <p key={`input-${building.id}-${index}`}>
+              -{input.amount} {input.ressourceId}
+            </p>
+          ))}
           {building.outputs?.map((output, index) => (
             <p key={`${building.id}-${index}`}>
-              <b>{output.ressourceId} :</b>{" "}
-              {output.type === "static"
-                ? output.amount
-                : `${output.amount} / ${output.relativeTo}`}
-              {output.constraints ? ` (${output.constraints.join(", ")})` : ""}
+              +{output.amount} {output.ressourceId}
             </p>
           ))}
         </>
