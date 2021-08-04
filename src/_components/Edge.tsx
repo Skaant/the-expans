@@ -7,6 +7,7 @@ function Edge({
   id,
   a: { x: aX, y: aY },
   b: { x: bX, y: bY },
+  features,
   origin,
 }: EdgeModel & {
   origin: Coords;
@@ -17,13 +18,6 @@ function Edge({
   const displayBY = origin.y + bY;
   return (
     <g>
-      <text
-        x={displayAX + (bX - aX) / 2}
-        y={displayAY + (bY - aY) / 2 - 35}
-        textAnchor="middle"
-      >
-        {id}
-      </text>
       <line
         x1={displayAX}
         y1={displayAY}
@@ -32,6 +26,13 @@ function Edge({
         stroke="grey"
         strokeWidth={BASE_LINE_WIDTH}
       />
+      <text
+        x={displayAX + (bX - aX) / 2}
+        y={displayAY + (bY - aY) / 2 - 35}
+        textAnchor="middle"
+      >
+        {features?.join(", ")}
+      </text>
     </g>
   );
 }
