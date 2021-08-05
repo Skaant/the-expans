@@ -4,11 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import NodeSlotModel from "../../_models/NodeSlot";
 import { addNode } from "./nodes";
+import EdgeModel from "../../_models/Edge";
 
-export type SelectionType = "node" | "node-slot";
+export type SelectionType = "node" | "node-slot" | "edge-model";
 
 export type Selection = {
-  item: NodeModel | NodeSlotModel;
+  item: NodeModel | NodeSlotModel | EdgeModel;
   type: SelectionType;
 };
 
