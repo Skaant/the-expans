@@ -1,4 +1,4 @@
-import { AddNodePayload } from "../_actions/nodes";
+import { AddBuildingToNodePayload, AddNodePayload } from "../_actions/nodes";
 import NodeModel from "../../_models/Node";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
@@ -19,14 +19,29 @@ export const nodesSlice = createSlice({
   name: "nodes",
   initialState,
   reducers: {
-    addNode: (state, action: PayloadAction<AddNodePayload>) => [
+    addNode: (state: NodesState, action: PayloadAction<AddNodePayload>) => [
       ...state,
       action.payload.node,
     ],
+    addBuildingToNode: (
+      state: NodesState,
+      action: PayloadAction<AddBuildingToNodePayload>
+    ) => {
+      const { node, buildingId } = action.payload;
+      const nodeIndex = state.findIndex((_node) => _node === node);
+      return [
+        ...state.slice(0, nodeIndex),
+        {
+          ...node,
+          buildingId,
+        },
+        ...state.slice(nodeIndex),
+      ];
+    },
   },
 });
 
-export const { addNode } = nodesSlice.actions;
+export const { addNode, addBuildingToNode } = nodesSlice.actions;
 
 export const nodesSelector = (state: RootState) => state.nodes;
 
