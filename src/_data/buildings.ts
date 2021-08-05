@@ -16,8 +16,8 @@ const BUILDINGS_DATA = {
   [BUILDINGS.KOLOS_SEED]: {
     id: BUILDINGS.KOLOS_SEED,
     name: {
-      [LANGS.FR]: "Capsule de colonisation",
-      [LANGS.EN]: "Colonization pod",
+      [LANGS.FR]: "Vaisseau-graine",
+      [LANGS.EN]: "Seed-vessel",
     },
     description: {
       [LANGS.FR]:
