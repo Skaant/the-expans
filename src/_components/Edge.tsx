@@ -2,22 +2,33 @@ import * as React from "react";
 import { BASE_LINE_WIDTH } from "../_data/primordials";
 import Coords from "../_models/Coords";
 import EdgeModel from "../_models/Edge";
+import { useAppDispatch } from "../_store/hooks";
+import { select } from "../_store/_reducers/selection";
 
-function Edge({
-  id,
-  a: { x: aX, y: aY },
-  b: { x: bX, y: bY },
-  features,
-  origin,
-}: EdgeModel & {
-  origin: Coords;
-}) {
+function Edge({ edge, origin }: { edge: EdgeModel; origin: Coords }) {
+  const {
+    a: { x: aX, y: aY },
+    b: { x: bX, y: bY },
+    features,
+  } = edge;
+  const dispatch = useAppDispatch();
   const displayAX = origin.x + aX;
   const displayAY = origin.y + aY;
   const displayBX = origin.x + bX;
   const displayBY = origin.y + bY;
   return (
-    <g>
+    <g
+      onClick={() =>
+        dispatch(
+          select({
+            next: {
+              type: "edge-model",
+              item: edge,
+            },
+          })
+        )
+      }
+    >
       <line
         x1={displayAX}
         y1={displayAY}
