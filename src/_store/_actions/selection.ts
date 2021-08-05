@@ -1,4 +1,4 @@
-import { Selection } from "../_reducers/selection";
+import { SelectionModel } from "../_reducers/selection";
 export interface SelectPayload {
-  next?: Selection;
+  next?: SelectionModel;
 }

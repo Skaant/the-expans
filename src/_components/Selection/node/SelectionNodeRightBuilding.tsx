@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { LANGS } from "../../_data/langs";
-import BuildingDataModel from "../../_models/data/Building";
-import LangDictionnary from "../../_models/langs/LangDictionary";
-import { useAppSelector } from "../../_store/hooks";
-import { langSelector } from "../../_store/_reducers/app";
+import { LANGS } from "../../../_data/langs";
+import BuildingDataModel from "../../../_models/data/Building";
+import LangDictionnary from "../../../_models/langs/LangDictionary";
+import { useAppSelector } from "../../../_store/hooks";
+import { langSelector } from "../../../_store/_reducers/app";
 
 const langs: LangDictionnary = {
   building: {
@@ -12,7 +12,11 @@ const langs: LangDictionnary = {
   },
 };
 
-function SelectionBuilding({ building }: { building: BuildingDataModel }) {
+function SelectionNodeRightBuilding({
+  building,
+}: {
+  building: BuildingDataModel;
+}) {
   const lang = useAppSelector(langSelector);
   const [collapse, setCollapse] = useState(true);
   return (
@@ -38,4 +42,4 @@ function SelectionBuilding({ building }: { building: BuildingDataModel }) {
   );
 }
 
-export default SelectionBuilding;
+export default SelectionNodeRightBuilding;

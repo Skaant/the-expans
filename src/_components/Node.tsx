@@ -5,7 +5,7 @@ import Coords from "../_models/Coords";
 import NodeSlot from "./NodeSlot";
 import buildings from "../_data/buildings";
 import Building from "./Building";
-import { Selection } from "../_store/_reducers/selection";
+import { SelectionModel } from "../_store/_reducers/selection";
 import NodeSlotModel from "../_models/NodeSlot";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
 
@@ -20,7 +20,7 @@ function Node({
   origin: Coords;
   selected: boolean;
   sourcing?: NodeSlotModel;
-  select: (selection?: Selection) => void;
+  select: (selection?: SelectionModel) => void;
 }) {
   const { x: originX, y: originY } = origin;
   const { id, x: nodeX, y: nodeY, buildingId } = node;

@@ -7,12 +7,12 @@ import { nodesSelector } from "../_store/_reducers/nodes";
 import {
   currentSelectionSelector,
   select,
-  Selection,
+  SelectionModel,
 } from "../_store/_reducers/selection";
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
-import Dialog from "./Selection/Selection";
+import SelectionSwitch from "./selection/SelectionSwitch";
 import NodeSlotModel from "../_models/NodeSlot";
 import TopBar from "./TopBar";
 import EdgeModel from "../_models/Edge";
@@ -80,13 +80,13 @@ function App() {
                 ? (selection?.item as NodeSlotModel)
                 : undefined
             }
-            select={(selection?: Selection) =>
+            select={(selection?: SelectionModel) =>
               dispatch(select(selection ? { next: selection } : {}))
             }
           />
         ))}
       </svg>
-      {selection && <Dialog selection={selection} />}
+      {selection && <SelectionSwitch selection={selection} />}
     </div>
   );
 }

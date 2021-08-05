@@ -1,12 +1,12 @@
 import * as React from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { LANGS } from "../../_data/langs";
-import Coords from "../../_models/Coords";
-import LangDictionnary from "../../_models/langs/LangDictionary";
-import NodeModel from "../../_models/Node";
-import { useAppDispatch, useAppSelector } from "../../_store/hooks";
-import { langSelector } from "../../_store/_reducers/app";
-import { addNode } from "../../_store/_reducers/nodes";
+import { LANGS } from "../../../_data/langs";
+import Coords from "../../../_models/Coords";
+import LangDictionnary from "../../../_models/langs/LangDictionary";
+import NodeModel from "../../../_models/Node";
+import { useAppDispatch, useAppSelector } from "../../../_store/hooks";
+import { langSelector } from "../../../_store/_reducers/app";
+import { addNode } from "../../../_store/_reducers/nodes";
 
 const langs: LangDictionnary = {
   description: {
@@ -21,7 +21,7 @@ const langs: LangDictionnary = {
   },
 };
 
-function SelectionNodeSlotMenu({
+function SelectionNodeSlotRight({
   source,
   x,
   y,
@@ -32,7 +32,7 @@ function SelectionNodeSlotMenu({
   const dispatch = useAppDispatch();
   return (
     <>
-      <p>{langs["description"][lang]}</p>
+      <p>{langs.description[lang]}</p>
       <button
         onClick={() =>
           dispatch(
@@ -53,4 +53,4 @@ function SelectionNodeSlotMenu({
   );
 }
 
-export default SelectionNodeSlotMenu;
+export default SelectionNodeSlotRight;

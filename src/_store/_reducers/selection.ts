@@ -8,13 +8,13 @@ import EdgeModel from "../../_models/Edge";
 
 export type SelectionType = "node" | "node-slot" | "edge-model";
 
-export type Selection = {
+export type SelectionModel = {
   item: NodeModel | NodeSlotModel | EdgeModel;
   type: SelectionType;
 };
 
 export type SelectionState = {
-  current?: Selection;
+  current?: SelectionModel;
 };
 
 const initialState: SelectionState = {};
