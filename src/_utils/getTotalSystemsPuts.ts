@@ -1,4 +1,5 @@
 import RESSOURCES from "../_data/ressources";
+import ResourcesAmountModel from "../_models/data/ResourcesAmount";
 import SystemPuts from "../_models/data/SystemPuts";
 
 function getTotalSystemsPuts(puts: SystemPuts[] = []) {
@@ -17,7 +18,7 @@ function getTotalSystemsPuts(puts: SystemPuts[] = []) {
         ...ressources,
         [ressourceId]: 0,
       }),
-      {} as { [value in RESSOURCES]: number }
+      {} as ResourcesAmountModel
     )
   );
 }
