@@ -1,12 +1,10 @@
 import { EDGE_FEATURES } from "../../_data/edges";
 import LangAlt from "../langs/LangAlt";
-import ResourcePut from "./RessourcePut";
+import SystemPuts from "./SystemPuts";
 
 type EdgeFeatureModel = {
   id: EDGE_FEATURES;
   name: LangAlt;
-  inputs?: ResourcePut[];
-  outputs?: ResourcePut[];
-};
+} & SystemPuts;
 
 export default EdgeFeatureModel;

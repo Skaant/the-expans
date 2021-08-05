@@ -1,7 +1,7 @@
 import { BUILDINGS } from "../../_data/buildings";
 
 import LangAlt from "../langs/LangAlt";
-import ResourcePut from "./RessourcePut";
+import SystemPuts from "./SystemPuts";
 
 type BuildingDataModel = {
   id: BUILDINGS;
@@ -9,8 +9,6 @@ type BuildingDataModel = {
   description: LangAlt;
   radiusModifier?: number;
   strokeColor?: string;
-  inputs?: ResourcePut[];
-  outputs?: ResourcePut[];
-};
+} & SystemPuts;
 
 export default BuildingDataModel;
