@@ -1,8 +1,10 @@
 import * as React from "react";
+import { EDGE_FEATURES_DATA } from "../_data/edges";
 import { BASE_LINE_WIDTH } from "../_data/primordials";
 import Coords from "../_models/Coords";
 import EdgeModel from "../_models/Edge";
-import { useAppDispatch } from "../_store/hooks";
+import { useAppDispatch, useAppSelector } from "../_store/hooks";
+import { langSelector } from "../_store/_reducers/app";
 import { select } from "../_store/_reducers/selection";
 
 function Edge({
@@ -14,12 +16,13 @@ function Edge({
   origin: Coords;
   selected?: boolean;
 }) {
+  const lang = useAppSelector(langSelector);
+  const dispatch = useAppDispatch();
   const {
     a: { x: aX, y: aY },
     b: { x: bX, y: bY },
     features,
   } = edge;
-  const dispatch = useAppDispatch();
   const displayAX = origin.x + aX;
   const displayAY = origin.y + aY;
   const displayBX = origin.x + bX;
@@ -51,7 +54,9 @@ function Edge({
         y={displayAY + (bY - aY) / 2 - 35}
         textAnchor="middle"
       >
-        {features?.join(", ")}
+        {features
+          ?.map((featureId) => EDGE_FEATURES_DATA[featureId].name[lang])
+          .join(", ")}
       </text>
     </g>
   );
