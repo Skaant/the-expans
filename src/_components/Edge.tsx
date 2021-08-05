@@ -5,7 +5,15 @@ import EdgeModel from "../_models/Edge";
 import { useAppDispatch } from "../_store/hooks";
 import { select } from "../_store/_reducers/selection";
 
-function Edge({ edge, origin }: { edge: EdgeModel; origin: Coords }) {
+function Edge({
+  edge,
+  origin,
+  selected = false,
+}: {
+  edge: EdgeModel;
+  origin: Coords;
+  selected?: boolean;
+}) {
   const {
     a: { x: aX, y: aY },
     b: { x: bX, y: bY },
@@ -18,7 +26,8 @@ function Edge({ edge, origin }: { edge: EdgeModel; origin: Coords }) {
   const displayBY = origin.y + bY;
   return (
     <g
-      onClick={() =>
+      onClick={(ev) => {
+        ev.stopPropagation();
         dispatch(
           select({
             next: {
@@ -26,15 +35,15 @@ function Edge({ edge, origin }: { edge: EdgeModel; origin: Coords }) {
               item: edge,
             },
           })
-        )
-      }
+        );
+      }}
     >
       <line
         x1={displayAX}
         y1={displayAY}
         x2={displayBX}
         y2={displayBY}
-        stroke="grey"
+        stroke={selected ? "red" : "grey"}
         strokeWidth={BASE_LINE_WIDTH}
       />
       <text

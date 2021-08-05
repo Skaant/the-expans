@@ -15,6 +15,7 @@ import Edge from "./Edge";
 import Dialog from "./Selection/Selection";
 import NodeSlotModel from "../_models/NodeSlot";
 import TopBar from "./TopBar";
+import EdgeModel from "../_models/Edge";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -57,17 +58,25 @@ function App() {
         onClick={() => dispatch(select({}))}
       >
         {edges.map((edge) => (
-          <Edge key={edge.id} edge={edge} origin={origin} />
+          <Edge
+            key={edge.id}
+            edge={edge}
+            origin={origin}
+            selected={
+              selection?.type === "edge-model" &&
+              (selection.item as EdgeModel) === edge
+            }
+          />
         ))}
         {nodes.map((node) => (
           <Node
             key={node.id}
             origin={origin}
             node={node}
-            selected={selection?.type === "node" && selection?.item === node}
+            selected={selection?.type === "node" && selection.item === node}
             sourcing={
               selection?.type === "node-slot" &&
-              (selection?.item as NodeSlotModel).source === node
+              (selection.item as NodeSlotModel).source === node
                 ? (selection?.item as NodeSlotModel)
                 : undefined
             }
