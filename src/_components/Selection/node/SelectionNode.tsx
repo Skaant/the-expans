@@ -5,6 +5,7 @@ import SelectionNodeLeft from "./SelectionNodeLeft";
 import NodeModel from "../../../_models/Node";
 import BUILDINGS_DATA from "../../../_data/buildings";
 import SelectionNodeRightBuilding from "./SelectionNodeRightBuilding";
+import SelectionNodeRightEmpty from "./SelectionNodeRightEmpty";
 
 function SelectionNode({ selection }: { selection: SelectionModel }) {
   const node = selection.item as NodeModel;
@@ -13,7 +14,13 @@ function SelectionNode({ selection }: { selection: SelectionModel }) {
     <SelectionLayout
       selection={selection}
       left={<SelectionNodeLeft selection={selection} />}
-      right={building && <SelectionNodeRightBuilding building={building} />}
+      right={
+        building ? (
+          <SelectionNodeRightBuilding building={building} />
+        ) : (
+          <SelectionNodeRightEmpty node={node} />
+        )
+      }
     />
   );
 }
