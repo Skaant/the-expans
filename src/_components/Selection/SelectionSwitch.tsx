@@ -10,7 +10,7 @@ function SelectionSwitch({ selection }: { selection: SelectionModel }) {
       return <SelectionNode selection={selection} />;
     case "node-slot":
       return <SelectionNodeSlot selection={selection} />;
-    case "edge-model":
+    case "edge":
       return <SelectionEdge selection={selection} />;
   }
 }

@@ -34,7 +34,7 @@ function Edge({
         dispatch(
           select({
             next: {
-              type: "edge-model",
+              type: "edge",
               item: edge,
             },
           })

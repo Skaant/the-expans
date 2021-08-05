@@ -63,7 +63,7 @@ function App() {
             edge={edge}
             origin={origin}
             selected={
-              selection?.type === "edge-model" &&
+              selection?.type === "edge" &&
               (selection.item as EdgeModel) === edge
             }
           />
