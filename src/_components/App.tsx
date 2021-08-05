@@ -57,7 +57,7 @@ function App() {
         onClick={() => dispatch(select({}))}
       >
         {edges.map((edge) => (
-          <Edge key={edge.id} {...edge} origin={origin} />
+          <Edge key={edge.id} edge={edge} origin={origin} />
         ))}
         {nodes.map((node) => (
           <Node
