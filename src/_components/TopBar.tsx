@@ -1,35 +1,31 @@
 import * as React from "react";
-import BUILDINGS_DATA from "../_data/buildings";
+import BUILDINGS_DATA, { BUILDINGS } from "../_data/buildings";
+import { EDGE_FEATURES, EDGE_FEATURES_DATA } from "../_data/edges";
 import { LANGS } from "../_data/langs";
-import RESSOURCES from "../_data/ressources";
 import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { langSelector, setLang } from "../_store/_reducers/app";
+import { edgesSelector } from "../_store/_reducers/edges";
 import { nodesSelector } from "../_store/_reducers/nodes";
+import getTotalSystemsPuts from "../_utils/getTotalSystemsPuts";
 
 function TopBar() {
   const lang = useAppSelector(langSelector);
   const nodes = useAppSelector(nodesSelector);
+  const edges = useAppSelector(edgesSelector);
   const dispatch = useAppDispatch();
-  const ressources = nodes.reduce(
-    (ressources, node) => {
-      const building = node.buildingId && BUILDINGS_DATA[node.buildingId];
-      if (!building) return ressources;
-      building.inputs?.forEach(
-        (input) => (ressources[input.ressourceId] -= input.amount)
-      );
-      building.outputs?.forEach(
-        (output) => (ressources[output.ressourceId] += output.amount)
-      );
-      return ressources;
-    },
-    Object.values(RESSOURCES).reduce(
-      (ressources, ressourceId) => ({
-        ...ressources,
-        [ressourceId]: 0,
-      }),
-      {} as { [value in RESSOURCES]: number }
-    )
-  );
+  const total = getTotalSystemsPuts([
+    ...nodes
+      .filter((node) => node.buildingId)
+      .map((node) => BUILDINGS_DATA[node.buildingId as BUILDINGS]),
+    ...edges
+      .filter((edge) => edge.features)
+      .map((edge) =>
+        (edge.features as EDGE_FEATURES[]).map(
+          (featureId) => EDGE_FEATURES_DATA[featureId]
+        )
+      )
+      .flat(),
+  ]);
   return (
     <div
       style={{
@@ -46,7 +42,7 @@ function TopBar() {
       }}
     >
       <div style={{ display: "flex" }}>
-        {Object.entries(ressources)
+        {Object.entries(total)
           .filter(([, amount]) => amount)
           .map(([ressourceId, amount]) => (
             <div
