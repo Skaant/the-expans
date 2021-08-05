@@ -6,7 +6,7 @@ import NodeSlotModel from "../../_models/NodeSlot";
 import { addNode } from "./nodes";
 import EdgeModel from "../../_models/Edge";
 
-export type SelectionType = "node" | "node-slot" | "edge-model";
+export type SelectionType = "node" | "node-slot" | "edge";
 
 export type SelectionModel = {
   item: NodeModel | NodeSlotModel | EdgeModel;
@@ -47,7 +47,36 @@ export const selectionSlice = createSlice({
 
 export const { select } = selectionSlice.actions;
 
-export const currentSelectionSelector = (state: RootState) =>
-  state.selection.current;
+export const currentSelectionSelector = (state: RootState) => {
+  const current = state.selection.current;
+  if (current) {
+    const { item, type } = current;
+    const { id } = item;
+    /** /!\ HACK /!\
+     *
+     * For `node` and `edge`, selection
+     * hold old reference to item while it is
+     * updated in its own reducers.
+     *
+     * In order to clean it, selection should hold
+     * only item's id (but it's not that simple thanks to
+     * `node-slot` which only virtually exists). */
+    switch (type) {
+      case "node":
+        return {
+          type,
+          item: state.nodes.find((node) => node.id === id),
+        } as SelectionModel;
+      case "edge":
+        return {
+          type,
+          item: state.edges.find((edge) => edge.id === id),
+        } as SelectionModel;
+      case "node-slot":
+        return current;
+    }
+  }
+  return current;
+};
 
 export default selectionSlice.reducer;
