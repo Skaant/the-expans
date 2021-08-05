@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMemo } from "react";
 import { LANGS } from "../../../_data/langs";
 import BuildingDataModel from "../../../_models/data/Building";
@@ -21,10 +21,9 @@ function SelectionNodeRightBuilding({
   building: BuildingDataModel;
 }) {
   const lang = useAppSelector(langSelector);
-  const [collapse, setCollapse] = useState(true);
   const total = useMemo(() => getTotalSystemsPuts([building]), [building]);
   return (
-    <div onClick={() => setCollapse(!collapse)}>
+    <div>
       <p className="selection-title">{langs["building"][lang]}</p>
       <h2>{building.name[lang]}</h2>
       <p>{building.description[lang]}</p>
