@@ -7,8 +7,8 @@ import BUILDINGS_DATA from "../../../_data/buildings";
 import SelectionNodeRightBuilding from "./SelectionNodeRightBuilding";
 
 function SelectionNode({ selection }: { selection: SelectionModel }) {
-  const item = selection.item as NodeModel;
-  const building = item.buildingId && BUILDINGS_DATA[item.buildingId];
+  const node = selection.item as NodeModel;
+  const building = node.buildingId && BUILDINGS_DATA[node.buildingId];
   return (
     <SelectionLayout
       selection={selection}
