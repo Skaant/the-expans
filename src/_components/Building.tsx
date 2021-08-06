@@ -4,7 +4,7 @@ import Coords from "../_models/Coords";
 import BuildingDataModel from "../_models/data/Building";
 import { useAppSelector } from "../_store/hooks";
 import { langSelector } from "../_store/_reducers/app";
-import KolosSeedIcon from "./_icons/KoloSeed.icon";
+import BuildingIconSwitch from "./BuildingIconSwitch";
 
 function Building({
   x,
@@ -15,12 +15,15 @@ function Building({
   selected?: boolean;
 }) {
   const lang = useAppSelector(langSelector);
+  const { id, name } = building;
   return (
     <>
       <text x={x} y={y - 48} textAnchor="middle">
-        {building.name[lang]}
+        {name[lang]}
       </text>
-      {building.id === BUILDINGS.KOLOS_SEED && <KolosSeedIcon x={x} y={y} />}
+      {id === BUILDINGS.KOLOS_SEED && (
+        <BuildingIconSwitch buildingId={id} x={x} y={y} />
+      )}
     </>
   );
 }
