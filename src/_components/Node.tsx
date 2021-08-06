@@ -54,13 +54,14 @@ function Node({
         r={BASE_NODE_RADIUS}
         style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
       />
-      <Building
-        nodeId={id}
-        x={displayX}
-        y={displayY}
-        building={building}
-        selected={selected}
-      />
+      {building && (
+        <Building
+          x={displayX}
+          y={displayY}
+          building={building}
+          selected={selected}
+        />
+      )}
       {selected &&
         Object.values(DIRECTIONS).map((direction) => (
           <NodeSlot
