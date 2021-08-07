@@ -7,6 +7,7 @@ import { langSelector, setLang } from "../_store/_reducers/app";
 import { edgesSelector } from "../_store/_reducers/edges";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import getTotalSystemsPuts from "../_utils/getTotalSystemsPuts";
+import ResourcesAmount from "./ResourcesAmount/ResourcesAmount";
 
 function TopBar() {
   const lang = useAppSelector(langSelector);
@@ -37,21 +38,12 @@ function TopBar() {
         justifyContent: "space-between",
         background: "black",
         color: "white",
-        padding: "8px",
+        padding: "16px",
         boxSizing: "border-box",
       }}
     >
-      <div style={{ display: "flex" }}>
-        {Object.entries(total)
-          .filter(([, amount]) => amount)
-          .map(([ressourceId, amount]) => (
-            <div
-              key={ressourceId}
-              style={{ margin: "0 8px", textTransform: "uppercase" }}
-            >
-              {ressourceId}: <b>{amount}</b>
-            </div>
-          ))}
+      <div>
+        <ResourcesAmount resourcesAmount={total} />
       </div>
       <div style={{ display: "flex" }}>
         {Object.values(LANGS).map((_lang) => (
