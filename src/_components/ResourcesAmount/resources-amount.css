@@ -1,0 +1,9 @@
+.resources-amount__item {
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+.resources-amount__item svg {
+  vertical-align: middle;
+  margin-left: 4px;
+}
