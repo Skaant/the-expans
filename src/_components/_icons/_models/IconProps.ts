@@ -1,5 +1,3 @@
-import Coords from "../../../_models/Coords";
-
 export enum ICON_SIZES {
   SM = "sm",
   MD = "md",
@@ -14,6 +12,9 @@ export const ICON_SIZES_MODIFIER: { [key in ICON_SIZES]: number } = {
 
 type IconPropsModel = {
   size?: ICON_SIZES;
-} & Coords;
+  x?: number;
+  y?: number;
+  fill?: string;
+};
 
 export default IconPropsModel;

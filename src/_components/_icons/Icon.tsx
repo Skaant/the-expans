@@ -7,8 +7,9 @@ import IconPropsModel, {
 
 function Icon({
   size = ICON_SIZES.MD,
-  x,
-  y,
+  x = 0,
+  y = 0,
+  fill = "white",
   path,
 }: IconPropsModel & { path: string }) {
   const value = ICON_SIZES_MODIFIER[size] * BASE_NODE_RADIUS * 0.8;
@@ -21,7 +22,7 @@ function Icon({
       width={value}
       viewBox={`0 0 512 512`}
     >
-      <path d={path} fill="#fff" fillOpacity="1"></path>
+      <path d={path} fill={fill} fillOpacity="1"></path>
     </svg>
   );
 }
