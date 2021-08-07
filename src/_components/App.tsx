@@ -12,7 +12,7 @@ import {
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
-import SelectionSwitch from "./selection/SelectionSwitch";
+import SelectionSwitch from "./SelectionSwitch/SelectionSwitch";
 import NodeSlotModel from "../_models/NodeSlot";
 import TopBar from "./TopBar";
 import EdgeModel from "../_models/Edge";
