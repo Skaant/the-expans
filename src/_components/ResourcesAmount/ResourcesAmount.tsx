@@ -1,9 +1,9 @@
 import * as React from "react";
-import RESSOURCES from "../_data/ressources";
-import ResourcesAmountModel from "../_models/data/ResourcesAmount";
-import ResourceIconSwitch from "./ResourceIconSwitch";
-import { ICON_SIZES } from "./_icons/_models/IconProps";
-import "./ResourcesAmount/resources-amount.css";
+import RESSOURCES from "../../_data/ressources";
+import ResourcesAmountModel from "../../_models/data/ResourcesAmount";
+import ResourceIconSwitch from "../ResourceIconSwitch";
+import { ICON_SIZES } from "../_icons/_models/IconProps";
+import "./resources-amount.css";
 
 function ResourcesAmount({
   resourcesAmount,

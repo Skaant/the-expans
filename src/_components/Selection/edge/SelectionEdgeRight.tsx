@@ -6,7 +6,7 @@ import LangDictionnary from "../../../_models/langs/LangDictionary";
 import { useAppSelector } from "../../../_store/hooks";
 import { langSelector } from "../../../_store/_reducers/app";
 import getTotalSystemsPuts from "../../../_utils/getTotalSystemsPuts";
-import ResourcesAmount from "../../ResourcesAmount";
+import ResourcesAmount from "../../ResourcesAmount/ResourcesAmount";
 
 const langs: LangDictionnary = {
   features: {

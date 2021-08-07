@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../../_store/hooks";
 import { langSelector } from "../../../_store/_reducers/app";
 import { addBuildingToNode } from "../../../_store/_reducers/nodes";
 import getTotalSystemsPuts from "../../../_utils/getTotalSystemsPuts";
-import ResourcesAmount from "../../ResourcesAmount";
+import ResourcesAmount from "../../ResourcesAmount/ResourcesAmount";
 
 const langs: LangDictionnary = {
   title: {
