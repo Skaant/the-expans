@@ -21,7 +21,7 @@ function Icon({
       width={value}
       viewBox={`0 0 512 512`}
     >
-      <path d={path} fill="#fff" fill-opacity="1"></path>
+      <path d={path} fill="#fff" fillOpacity="1"></path>
     </svg>
   );
 }
