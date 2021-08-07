@@ -28,14 +28,14 @@ export const nodesSlice = createSlice({
       action: PayloadAction<AddBuildingToNodePayload>
     ) => {
       const { node, buildingId } = action.payload;
-      const nodeIndex = state.findIndex((_node) => _node === node);
+      const nodeIndex = state.findIndex(({ id }) => id === node.id);
       return [
         ...state.slice(0, nodeIndex),
         {
           ...node,
           buildingId,
         },
-        ...state.slice(nodeIndex),
+        ...(nodeIndex + 1 < state.length ? state.slice(nodeIndex + 1) : []),
       ];
     },
   },
