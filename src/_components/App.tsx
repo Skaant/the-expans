@@ -35,7 +35,7 @@ function App() {
   });
   /** RESIZE UPDATER */
   function updateDimensions() {
-    const height = window.innerHeight;
+    const height = window.innerHeight - 4;
     const width = window.innerWidth;
     setLayout({
       height,
@@ -55,6 +55,7 @@ function App() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${width} ${height}"`}
+        height={`${height - 4}px`}
         onClick={() => dispatch(select({}))}
       >
         {edges.map((edge) => (
