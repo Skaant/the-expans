@@ -1,12 +1,10 @@
 import * as React from "react";
-import { nanoid } from "@reduxjs/toolkit";
 import { LANGS } from "../../../_data/langs";
-import Coords from "../../../_models/Coords";
 import LangDictionnary from "../../../_models/langs/LangDictionary";
-import NodeModel from "../../../_models/Node";
+import { NodeClass } from "../../../_models/Node";
 import { useAppDispatch, useAppSelector } from "../../../_store/hooks";
 import { langSelector } from "../../../_store/_reducers/app";
-import { addNode } from "../../../_store/_reducers/nodes";
+import { addNode, nodesSelector } from "../../../_store/_reducers/nodes";
 
 const langs: LangDictionnary = {
   description: {
@@ -21,28 +19,21 @@ const langs: LangDictionnary = {
   },
 };
 
-function SelectionNodeSlotRight({
-  source,
-  x,
-  y,
-}: Coords & {
-  source: NodeModel;
-}) {
+function SelectionEdgeSlotRight({ sourceId }: { sourceId: string }) {
   const lang = useAppSelector(langSelector);
+  const nodes = useAppSelector(nodesSelector);
   const dispatch = useAppDispatch();
+  const source = nodes.find((node) => sourceId === node.id);
   return (
     <>
       <p>{langs.description[lang]}</p>
       <button
         onClick={() =>
+          source &&
           dispatch(
             addNode({
               source,
-              node: {
-                id: nanoid(),
-                x,
-                y,
-              },
+              node: new NodeClass({ x: source.x, y: source.y }),
             })
           )
         }
@@ -53,4 +44,4 @@ function SelectionNodeSlotRight({
   );
 }
 
-export default SelectionNodeSlotRight;
+export default SelectionEdgeSlotRight;
