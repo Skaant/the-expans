@@ -13,9 +13,9 @@ import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
 import Edge from "./Edge";
 import SelectionSwitch from "./SelectionSwitch/SelectionSwitch";
-import NodeSlotModel from "../_models/NodeSlot";
 import TopBar from "./TopBar";
 import EdgeModel from "../_models/Edge";
+import EdgeSlotModel from "../_models/EdgeSlot";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -76,9 +76,12 @@ function App() {
             node={node}
             selected={selection?.type === "node" && selection.item === node}
             sourcing={
-              selection?.type === "node-slot" &&
-              (selection.item as NodeSlotModel).source === node
-                ? (selection?.item as NodeSlotModel)
+              selection?.type === "edge-slot" &&
+              nodes.find(
+                (_node) =>
+                  (selection.item as EdgeSlotModel).sourceId === _node.id
+              ) === node
+                ? (selection?.item as EdgeSlotModel)
                 : undefined
             }
             select={(selection?: SelectionModel) =>
