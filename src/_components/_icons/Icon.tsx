@@ -1,5 +1,5 @@
-import React from "react";
-import { BASE_NODE_RADIUS } from "../../_data/primordials";
+import React, { ReactElement } from "react";
+import { BASE_ICON_SIZE } from "../../_data/primordials";
 import IconPropsModel, {
   ICON_SIZES,
   ICON_SIZES_MODIFIER,
@@ -11,8 +11,9 @@ function Icon({
   y = 0,
   fill = "white",
   path,
-}: IconPropsModel & { path: string }) {
-  const value = ICON_SIZES_MODIFIER[size] * BASE_NODE_RADIUS * 0.8;
+  children,
+}: IconPropsModel & { path?: string; children?: ReactElement }) {
+  const value = ICON_SIZES_MODIFIER[size] * BASE_ICON_SIZE;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +23,7 @@ function Icon({
       width={value}
       viewBox={`0 0 512 512`}
     >
-      <path d={path} fill={fill} fillOpacity="1"></path>
+      {path ? <path d={path} fill={fill} fillOpacity="1"></path> : children}
     </svg>
   );
 }
