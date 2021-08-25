@@ -2,14 +2,14 @@ import { SelectPayload } from "../_actions/selection";
 import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import NodeSlotModel from "../../_models/NodeSlot";
 import { addNode } from "./nodes";
 import EdgeModel from "../../_models/Edge";
+import EdgeSlotModel from "../../_models/EdgeSlot";
 
-export type SelectionType = "node" | "node-slot" | "edge";
+export type SelectionType = "node" | "edge" | "edge-slot";
 
 export type SelectionModel = {
-  item: NodeModel | NodeSlotModel | EdgeModel;
+  item: NodeModel | EdgeModel | EdgeSlotModel;
   type: SelectionType;
 };
 
@@ -72,7 +72,7 @@ export const currentSelectionSelector = (state: RootState) => {
           type,
           item: state.edges.find((edge) => edge.id === id),
         } as SelectionModel;
-      case "node-slot":
+      case "edge-slot":
         return current;
     }
   }
