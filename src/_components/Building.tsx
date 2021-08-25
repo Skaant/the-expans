@@ -4,6 +4,7 @@ import BuildingDataModel from "../_models/data/Building";
 import { useAppSelector } from "../_store/hooks";
 import { langSelector } from "../_store/_reducers/app";
 import BuildingIconSwitch from "./BuildingIconSwitch";
+import { ICON_SIZES } from "./_icons/_models/IconProps";
 
 function Building({
   x,
@@ -19,7 +20,7 @@ function Building({
       <text x={x} y={y - 48} textAnchor="middle">
         {name[lang]}
       </text>
-      <BuildingIconSwitch buildingId={id} x={x} y={y} />
+      <BuildingIconSwitch buildingId={id} x={x} y={y} size={ICON_SIZES.LG} />
     </>
   );
 }
