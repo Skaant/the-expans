@@ -2,6 +2,13 @@ import EdgeFeatureModel from "../_models/data/EdgeFeature";
 import { LANGS } from "./langs";
 import RESSOURCES from "./ressources";
 
+export enum EDGE_TYPES {
+  GROUND = "ground",
+  GROUND_IMPRACTICABLE = "ground-impracticable",
+  WATER = "water",
+  AIR = "air",
+}
+
 export enum EDGE_FEATURES {
   POND = "pond",
   BERRIES = "berries",
