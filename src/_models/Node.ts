@@ -6,14 +6,19 @@ import Coords from "./Coords";
 import EdgeModel from "./Edge";
 import EdgeSlotModel from "./EdgeSlot";
 
-export type NodeEdgesRosette = {
-  [key in DIRECTIONS]: EdgeModel | EdgeSlotModel;
+type NodeEdgesRosetteItemType = "edge" | "edge-slot";
+
+export type NodeEdgesRosetteModel = {
+  [key in DIRECTIONS]: {
+    type: NodeEdgesRosetteItemType;
+    value: EdgeModel | EdgeSlotModel;
+  };
 };
 
 type NodeModel = Coords & {
   id: string;
   buildingId?: BUILDINGS;
-  edgesRosette?: NodeEdgesRosette;
+  edgesRosette: NodeEdgesRosetteModel;
 };
 
 export class NodeClass implements NodeModel {
@@ -21,8 +26,8 @@ export class NodeClass implements NodeModel {
   y: number;
   id: string;
   buildingId?: BUILDINGS;
-  edgesRosette: NodeEdgesRosette;
-  constructor({ x, y, buildingId }: Omit<NodeModel, "id">) {
+  edgesRosette: NodeEdgesRosetteModel;
+  constructor({ x, y, buildingId }: Omit<NodeModel, "id" | "edgesRosette">) {
     this.x = x;
     this.y = y;
     this.id = nanoid();
