@@ -1,13 +1,13 @@
 import * as React from "react";
-import { DIRECTIONS } from "../_data/directions";
 import NodeModel from "../_models/Node";
 import Coords from "../_models/Coords";
-import NodeSlot from "./NodeSlot";
 import buildings from "../_data/buildings";
 import Building from "./Building";
 import { SelectionModel } from "../_store/_reducers/selection";
-import NodeSlotModel from "../_models/NodeSlot";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
+import NodeEdgesRosette from "./NodeEdgesRosette";
+import EdgeSlotModel from "../_models/EdgeSlot";
+import EdgeSlot from "./EdgeSlot";
 
 function Node({
   node,
@@ -19,11 +19,11 @@ function Node({
   node: NodeModel;
   origin: Coords;
   selected: boolean;
-  sourcing?: NodeSlotModel;
+  sourcing?: EdgeSlotModel;
   select: (selection?: SelectionModel) => void;
 }) {
   const { x: originX, y: originY } = origin;
-  const { id, x: nodeX, y: nodeY, buildingId } = node;
+  const { x: nodeX, y: nodeY, buildingId } = node;
   const displayX = originX + nodeX;
   const displayY = originY + nodeY;
   const building = buildingId && buildings[buildingId];
@@ -38,9 +38,10 @@ function Node({
       }}
     >
       {sourcing && (
-        <NodeSlot
-          source={node}
+        <EdgeSlot
+          sourceId={node.id}
           direction={sourcing.direction}
+          type={sourcing.type}
           display={{
             x: displayX,
             y: displayY,
@@ -58,18 +59,9 @@ function Node({
           style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
         />
       )}
-      {selected &&
-        Object.values(DIRECTIONS).map((direction) => (
-          <NodeSlot
-            key={`${id}-${direction}`}
-            source={node}
-            direction={direction}
-            display={{
-              x: displayX,
-              y: displayY,
-            }}
-          />
-        ))}
+      {selected && (
+        <NodeEdgesRosette node={node} display={{ x: displayX, y: displayY }} />
+      )}
     </g>
   );
 }
