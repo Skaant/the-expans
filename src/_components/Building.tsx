@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BASE_ICON_SIZE } from "../_data/primordials";
 import Coords from "../_models/Coords";
 import BuildingDataModel from "../_models/data/Building";
 import { useAppSelector } from "../_store/hooks";
@@ -17,10 +18,20 @@ function Building({
   const { id, name } = building;
   return (
     <>
-      <text x={x} y={y - 48} textAnchor="middle">
+      <text
+        x={x}
+        y={y - BASE_ICON_SIZE * 1.5}
+        textAnchor="middle"
+        style={{ textTransform: "uppercase" }}
+      >
         {name[lang]}
       </text>
-      <BuildingIconSwitch buildingId={id} x={x} y={y} size={ICON_SIZES.LG} />
+      <BuildingIconSwitch
+        buildingId={id}
+        x={x}
+        y={y - BASE_ICON_SIZE * 0.5}
+        size={ICON_SIZES.LG}
+      />
     </>
   );
 }
