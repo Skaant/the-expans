@@ -48,13 +48,16 @@ function Node({
           selected={true}
         />
       )}
-      <circle
-        cx={displayX}
-        cy={displayY}
-        r={BASE_NODE_RADIUS}
-        style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
-      />
-      {building && <Building x={displayX} y={displayY} building={building} />}
+      {building ? (
+        <Building x={displayX} y={displayY} building={building} />
+      ) : (
+        <circle
+          cx={displayX}
+          cy={displayY}
+          r={BASE_NODE_RADIUS}
+          style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
+        />
+      )}
       {selected &&
         Object.values(DIRECTIONS).map((direction) => (
           <NodeSlot
