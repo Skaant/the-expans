@@ -2,7 +2,7 @@ import * as React from "react";
 import { BUILDINGS } from "../_data/buildings";
 import DomIcon from "./_icons/Dom.icon";
 import FarmIcon from "./_icons/Farm.icon";
-import KolosSeedIcon from "./_icons/KoloSeed.icon";
+import KolosSeedIcon from "./_icons/KolosSeed.icon";
 import WellIcon from "./_icons/Well.icon";
 import IconPropsModel from "./_icons/_models/IconProps";
 
