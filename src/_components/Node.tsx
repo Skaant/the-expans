@@ -37,6 +37,21 @@ function Node({
         });
       }}
     >
+      <circle // selection hitbox / highlight
+        cx={displayX}
+        cy={displayY}
+        r={BASE_NODE_RADIUS * 3}
+        fill={selected ? "#fff8" : "#0000"}
+        style={{ cursor: "pointer" }}
+      />
+      {selected && (
+        <>
+          <NodeEdgesRosette
+            node={node}
+            display={{ x: displayX, y: displayY }}
+          />
+        </>
+      )}
       {sourcing && (
         <EdgeSlot
           sourceId={node.id}
@@ -58,9 +73,6 @@ function Node({
           r={BASE_NODE_RADIUS}
           style={selected ? { stroke: "red", strokeWidth: 5 } : {}}
         />
-      )}
-      {selected && (
-        <NodeEdgesRosette node={node} display={{ x: displayX, y: displayY }} />
       )}
     </g>
   );
