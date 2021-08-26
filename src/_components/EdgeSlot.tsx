@@ -21,10 +21,10 @@ function EdgeSlot({
   const nodes = useAppSelector(nodesSelector);
   const source = nodes.find((node) => sourceId === node.id) as NodeModel;
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
-  const displayAX = display.x + source.x;
-  const displayAY = display.y + source.y;
-  const displayBX = display.x + source.x + modX;
-  const displayBY = display.y + source.y + modY;
+  const displayAX = display.x + source.x + modX * 0.25;
+  const displayAY = display.y + source.y + modY * 0.25;
+  const displayBX = display.x + source.x + modX * 0.75;
+  const displayBY = display.y + source.y + modY * 0.75;
   return (
     <line
       x1={displayAX}
@@ -33,6 +33,7 @@ function EdgeSlot({
       y2={displayBY}
       stroke={selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"}
       strokeWidth={BASE_LINE_WIDTH}
+      strokeDasharray="8px"
     />
   );
 }
