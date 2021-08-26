@@ -20,9 +20,11 @@ function Building({
     <>
       <text
         x={x}
-        y={y - BASE_ICON_SIZE * 1.5}
+        y={y - BASE_ICON_SIZE * 2}
         textAnchor="middle"
         style={{ textTransform: "uppercase" }}
+        fontSize="24px"
+        fill="#222"
       >
         {name[lang]}
       </text>
