@@ -10,6 +10,13 @@ import { SelectPayload } from "../_store/_actions/selection";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import NodeSlotFlagIcon from "./_icons/NodeSlotFlag.icon";
 
+const edgeSlotTypeStroke = {
+  [EDGE_TYPES.PLAIN]: "white",
+  [EDGE_TYPES.MOUNTAIN]: "grey",
+  [EDGE_TYPES.WATER]: "blue",
+  [EDGE_TYPES.SKIGH]: "lightGrey",
+};
+
 function EdgeSlot({
   display,
   selected,
@@ -28,6 +35,7 @@ function EdgeSlot({
   const displayAY = display.y + source.y + modY * 0.25;
   const displayBX = display.x + source.x + modX * 0.9;
   const displayBY = display.y + source.y + modY * 0.9;
+
   return (
     <>
       <g
@@ -56,9 +64,7 @@ function EdgeSlot({
           y1={displayAY}
           x2={displayBX}
           y2={displayBY}
-          stroke={
-            selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"
-          }
+          stroke={selected ? "red" : edgeSlotTypeStroke[type]}
           strokeWidth={BASE_LINE_WIDTH}
           strokeDasharray="8px"
         />
