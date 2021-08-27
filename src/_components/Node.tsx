@@ -36,13 +36,13 @@ function Node({
           type: "node",
         });
       }}
+      style={{ cursor: "pointer" }}
     >
       <circle // selection hitbox / highlight
         cx={displayX}
         cy={displayY}
         r={BASE_NODE_RADIUS * 3}
         fill={selected ? "#fff8" : "#0000"}
-        style={{ cursor: "pointer" }}
       />
       {selected && (
         <>
