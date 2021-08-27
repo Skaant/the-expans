@@ -25,11 +25,22 @@ export const selectionSlice = createSlice({
   reducers: {
     select: (state, action: PayloadAction<SelectPayload>) => {
       const { current } = state;
-      const { next } = action.payload;
-      return {
-        ...state,
-        current: next?.item.id === current?.item.id ? undefined : next,
-      };
+      const { next, source } = action.payload;
+      if (next?.item.id === current?.item.id) {
+        if (current?.type === "edge-slot" && source) {
+          return {
+            ...state,
+            current: {
+              type: "node",
+              item: source,
+            },
+          };
+        } else {
+          return { ...state, current: undefined };
+        }
+      } else {
+        return { ...state, current: next };
+      }
     },
   },
   extraReducers: (builder) =>
