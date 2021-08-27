@@ -28,10 +28,7 @@ function NodeEdgesRosette({
             sourceId={node.id}
             direction={direction}
             type={type}
-            display={{
-              x: origin.x + node.x,
-              y: origin.y + node.y,
-            }}
+            origin={origin}
             select={select}
           />
         );

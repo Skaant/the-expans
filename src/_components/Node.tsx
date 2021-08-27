@@ -57,10 +57,7 @@ function Node({
           sourceId={node.id}
           direction={sourcing.direction}
           type={sourcing.type}
-          display={{
-            x: displayX,
-            y: displayY,
-          }}
+          origin={origin}
           selected={true}
           select={select}
         />

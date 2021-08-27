@@ -19,12 +19,12 @@ const edgeSlotTypeStroke = {
 };
 
 function EdgeSlot({
-  display,
+  origin,
   selected,
   select,
   ...edgeSlot
 }: EdgeSlotModel & {
-  display: Coords;
+  origin: Coords;
   selected?: boolean;
   select: (selection: SelectPayload) => void;
 }) {
@@ -33,10 +33,10 @@ function EdgeSlot({
   const dispatch = useAppDispatch();
   const source = nodes.find((node) => sourceId === node.id) as NodeModel;
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
-  const displayAX = display.x + source.x + modX * 0.25;
-  const displayAY = display.y + source.y + modY * 0.25;
-  const displayBX = display.x + source.x + modX * 0.9;
-  const displayBY = display.y + source.y + modY * 0.9;
+  const displayAX = origin.x + source.x + modX * 0.25;
+  const displayAY = origin.y + source.y + modY * 0.25;
+  const displayBX = origin.x + source.x + modX * 0.9;
+  const displayBY = origin.y + source.y + modY * 0.9;
   const targetX = source.x + modX;
   const targetY = source.y + modY;
   return (
@@ -94,7 +94,7 @@ function EdgeSlot({
             );
           }}
         >
-          <NodeSlotFlagIcon x={display.x + targetX} y={display.y + targetY} />
+          <NodeSlotFlagIcon x={origin.x + targetX} y={origin.y + targetY} />
         </g>
       )}
     </>
