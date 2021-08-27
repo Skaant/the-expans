@@ -6,8 +6,8 @@ import Coords from "../_models/Coords";
 import EdgeSlotModel from "../_models/EdgeSlot";
 import NodeModel from "../_models/Node";
 import { useAppSelector } from "../_store/hooks";
+import { SelectPayload } from "../_store/_actions/selection";
 import { nodesSelector } from "../_store/_reducers/nodes";
-import { SelectionModel } from "../_store/_reducers/selection";
 import NodeSlotFlagIcon from "./_icons/NodeSlotFlag.icon";
 
 function EdgeSlot({
@@ -18,7 +18,7 @@ function EdgeSlot({
 }: EdgeSlotModel & {
   display: Coords;
   selected?: boolean;
-  select: (selection?: SelectionModel) => void;
+  select: (selection: SelectPayload) => void;
 }) {
   const { sourceId, direction, type } = edgeSlot;
   const nodes = useAppSelector(nodesSelector);
@@ -30,24 +30,39 @@ function EdgeSlot({
   const displayBY = display.y + source.y + modY * 0.9;
   return (
     <>
-      <line
-        x1={displayAX}
-        y1={displayAY}
-        x2={displayBX}
-        y2={displayBY}
-        stroke={
-          selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"
-        }
-        strokeWidth={BASE_LINE_WIDTH}
-        strokeDasharray="8px"
+      <g
+        style={{ cursor: "pointer" }}
         onClick={(ev) => {
           ev.stopPropagation();
           select({
-            item: edgeSlot,
-            type: "edge-slot",
+            next: {
+              item: edgeSlot,
+              type: "edge-slot",
+            },
+            source,
           });
         }}
-      />
+      >
+        <line
+          x1={displayAX}
+          y1={displayAY}
+          x2={displayBX}
+          y2={displayBY}
+          stroke="#0000"
+          strokeWidth={BASE_LINE_WIDTH * 9}
+        />
+        <line
+          x1={displayAX}
+          y1={displayAY}
+          x2={displayBX}
+          y2={displayBY}
+          stroke={
+            selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"
+          }
+          strokeWidth={BASE_LINE_WIDTH}
+          strokeDasharray="8px"
+        />
+      </g>
       {selected && (
         <NodeSlotFlagIcon
           x={display.x + source.x + modX}
