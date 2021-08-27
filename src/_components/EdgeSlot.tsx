@@ -4,9 +4,10 @@ import { EDGE_TYPES } from "../_data/edges";
 import { BASE_LINE_WIDTH } from "../_data/primordials";
 import Coords from "../_models/Coords";
 import EdgeSlotModel from "../_models/EdgeSlot";
-import NodeModel from "../_models/Node";
-import { useAppSelector } from "../_store/hooks";
+import NodeModel, { NodeClass } from "../_models/Node";
+import { useAppDispatch, useAppSelector } from "../_store/hooks";
 import { SelectPayload } from "../_store/_actions/selection";
+import { addEdge } from "../_store/_reducers/edges";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import NodeSlotFlagIcon from "./_icons/NodeSlotFlag.icon";
 
@@ -29,13 +30,15 @@ function EdgeSlot({
 }) {
   const { sourceId, direction, type } = edgeSlot;
   const nodes = useAppSelector(nodesSelector);
+  const dispatch = useAppDispatch();
   const source = nodes.find((node) => sourceId === node.id) as NodeModel;
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
   const displayAX = display.x + source.x + modX * 0.25;
   const displayAY = display.y + source.y + modY * 0.25;
   const displayBX = display.x + source.x + modX * 0.9;
   const displayBY = display.y + source.y + modY * 0.9;
-
+  const targetX = source.x + modX;
+  const targetY = source.y + modY;
   return (
     <>
       <g
@@ -70,10 +73,29 @@ function EdgeSlot({
         />
       </g>
       {selected && (
-        <NodeSlotFlagIcon
-          x={display.x + source.x + modX}
-          y={display.y + source.y + modY}
-        />
+        <g
+          onClick={(ev) => {
+            ev.preventDefault();
+            dispatch(
+              addEdge({
+                edge: {
+                  id: edgeSlot.id,
+                  a: {
+                    x: source.x,
+                    y: source.y,
+                  },
+                  b: {
+                    x: targetX,
+                    y: targetY,
+                  },
+                },
+                node: new NodeClass({ x: targetX, y: targetY }),
+              })
+            );
+          }}
+        >
+          <NodeSlotFlagIcon x={display.x + targetX} y={display.y + targetY} />
+        </g>
       )}
     </>
   );

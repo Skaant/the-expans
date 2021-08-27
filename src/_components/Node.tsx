@@ -48,11 +48,7 @@ function Node({
       />
       {selected && (
         <>
-          <NodeEdgesRosette
-            node={node}
-            display={{ x: displayX, y: displayY }}
-            select={select}
-          />
+          <NodeEdgesRosette node={node} origin={origin} select={select} />
         </>
       )}
       {sourcing && (

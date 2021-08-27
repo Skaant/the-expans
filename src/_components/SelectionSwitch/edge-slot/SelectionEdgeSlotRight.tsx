@@ -1,10 +1,13 @@
 import * as React from "react";
+import { DIRECTIONS_MODIFIERS } from "../../../_data/directions";
 import { LANGS } from "../../../_data/langs";
+import EdgeSlotModel from "../../../_models/EdgeSlot";
 import LangDictionnary from "../../../_models/langs/LangDictionary";
 import { NodeClass } from "../../../_models/Node";
 import { useAppDispatch, useAppSelector } from "../../../_store/hooks";
 import { langSelector } from "../../../_store/_reducers/app";
-import { addNode, nodesSelector } from "../../../_store/_reducers/nodes";
+import { addEdge } from "../../../_store/_reducers/edges";
+import { nodesSelector } from "../../../_store/_reducers/nodes";
 
 const langs: LangDictionnary = {
   description: {
@@ -19,7 +22,7 @@ const langs: LangDictionnary = {
   },
 };
 
-function SelectionEdgeSlotRight({ sourceId }: { sourceId: string }) {
+function SelectionEdgeSlotRight({ id, sourceId, direction }: EdgeSlotModel) {
   const lang = useAppSelector(langSelector);
   const nodes = useAppSelector(nodesSelector);
   const dispatch = useAppDispatch();
@@ -31,9 +34,22 @@ function SelectionEdgeSlotRight({ sourceId }: { sourceId: string }) {
         onClick={() =>
           source &&
           dispatch(
-            addNode({
-              source,
-              node: new NodeClass({ x: source.x, y: source.y }),
+            addEdge({
+              edge: {
+                id,
+                a: {
+                  x: source.x,
+                  y: source.y,
+                },
+                b: {
+                  x: source.x + DIRECTIONS_MODIFIERS[direction].x,
+                  y: source.y + DIRECTIONS_MODIFIERS[direction].y,
+                },
+              },
+              node: new NodeClass({
+                x: source.x + DIRECTIONS_MODIFIERS[direction].x,
+                y: source.y + DIRECTIONS_MODIFIERS[direction].y,
+              }),
             })
           )
         }

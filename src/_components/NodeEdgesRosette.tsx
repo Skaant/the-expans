@@ -8,11 +8,11 @@ import EdgeSlot from "./EdgeSlot";
 
 function NodeEdgesRosette({
   node,
-  display,
+  origin,
   select,
 }: {
   node: NodeModel;
-  display: Coords;
+  origin: Coords;
   select: (selection: SelectPayload) => void;
 }) {
   return (
@@ -29,8 +29,8 @@ function NodeEdgesRosette({
             direction={direction}
             type={type}
             display={{
-              x: display.x,
-              y: display.y,
+              x: origin.x + node.x,
+              y: origin.y + node.y,
             }}
             select={select}
           />
