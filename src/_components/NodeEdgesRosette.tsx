@@ -3,7 +3,7 @@ import { DIRECTIONS } from "../_data/directions";
 import Coords from "../_models/Coords";
 import EdgeSlotModel from "../_models/EdgeSlot";
 import NodeModel from "../_models/Node";
-import { SelectionModel } from "../_store/_reducers/selection";
+import { SelectPayload } from "../_store/_actions/selection";
 import EdgeSlot from "./EdgeSlot";
 
 function NodeEdgesRosette({
@@ -13,7 +13,7 @@ function NodeEdgesRosette({
 }: {
   node: NodeModel;
   display: Coords;
-  select: (selection?: SelectionModel) => void;
+  select: (selection: SelectPayload) => void;
 }) {
   return (
     <>

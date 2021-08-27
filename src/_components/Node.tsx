@@ -3,11 +3,11 @@ import NodeModel from "../_models/Node";
 import Coords from "../_models/Coords";
 import buildings from "../_data/buildings";
 import Building from "./Building";
-import { SelectionModel } from "../_store/_reducers/selection";
 import { BASE_NODE_RADIUS } from "../_data/primordials";
 import NodeEdgesRosette from "./NodeEdgesRosette";
 import EdgeSlotModel from "../_models/EdgeSlot";
 import EdgeSlot from "./EdgeSlot";
+import { SelectPayload } from "../_store/_actions/selection";
 
 function Node({
   node,
@@ -20,7 +20,7 @@ function Node({
   origin: Coords;
   selected: boolean;
   sourcing?: EdgeSlotModel;
-  select: (selection?: SelectionModel) => void;
+  select: (selection: SelectPayload) => void;
 }) {
   const { x: originX, y: originY } = origin;
   const { x: nodeX, y: nodeY, buildingId } = node;
@@ -32,8 +32,10 @@ function Node({
       onClick={(ev) => {
         ev.stopPropagation();
         select({
-          item: node,
-          type: "node",
+          next: {
+            item: node,
+            type: "node",
+          },
         });
       }}
       style={{ cursor: "pointer" }}
