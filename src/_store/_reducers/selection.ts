@@ -2,9 +2,9 @@ import { SelectPayload } from "../_actions/selection";
 import NodeModel from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { addNode } from "./nodes";
 import EdgeModel from "../../_models/Edge";
 import EdgeSlotModel from "../../_models/EdgeSlot";
+import { addEdge } from "./edges";
 
 export type SelectionType = "node" | "edge" | "edge-slot";
 
@@ -44,13 +44,13 @@ export const selectionSlice = createSlice({
     },
   },
   extraReducers: (builder) =>
-    builder.addCase(addNode, (state, action) => {
-      const { node } = action.payload;
+    builder.addCase(addEdge, (state, action) => {
+      const { edge } = action.payload;
       return {
         ...state,
         current: {
-          item: node,
-          type: "node",
+          item: edge,
+          type: "edge",
         },
       };
     }),

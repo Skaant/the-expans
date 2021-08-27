@@ -1,8 +1,9 @@
-import { AddBuildingToNodePayload, AddNodePayload } from "../_actions/nodes";
+import { AddBuildingToNodePayload } from "../_actions/nodes";
 import NodeModel, { NodeClass } from "../../_models/Node";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { BUILDINGS } from "../../_data/buildings";
+import { addEdge } from "./edges";
 
 export type NodesState = NodeModel[];
 
@@ -14,10 +15,6 @@ export const nodesSlice = createSlice({
   name: "nodes",
   initialState,
   reducers: {
-    addNode: (state: NodesState, action: PayloadAction<AddNodePayload>) => [
-      ...state,
-      action.payload.node,
-    ],
     addBuildingToNode: (
       state: NodesState,
       action: PayloadAction<AddBuildingToNodePayload>
@@ -34,9 +31,14 @@ export const nodesSlice = createSlice({
       ];
     },
   },
+  extraReducers: (builder) =>
+    builder.addCase(addEdge, (state, action) => {
+      const node = action.payload.node;
+      return node ? [...state, node] : state;
+    }),
 });
 
-export const { addNode, addBuildingToNode } = nodesSlice.actions;
+export const { addBuildingToNode } = nodesSlice.actions;
 
 export const nodesSelector = (state: RootState) => state.nodes;
 
