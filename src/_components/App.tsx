@@ -7,7 +7,6 @@ import { nodesSelector } from "../_store/_reducers/nodes";
 import {
   currentSelectionSelector,
   select,
-  SelectionModel,
 } from "../_store/_reducers/selection";
 import Node from "./Node";
 import { edgesSelector } from "../_store/_reducers/edges";
@@ -16,6 +15,7 @@ import SelectionSwitch from "./SelectionSwitch/SelectionSwitch";
 import TopBar from "./TopBar";
 import EdgeModel from "../_models/Edge";
 import EdgeSlotModel from "../_models/EdgeSlot";
+import { SelectPayload } from "../_store/_actions/selection";
 
 function App() {
   const selection = useAppSelector(currentSelectionSelector);
@@ -84,8 +84,8 @@ function App() {
                 ? (selection?.item as EdgeSlotModel)
                 : undefined
             }
-            select={(selection?: SelectionModel) =>
-              dispatch(select(selection ? { next: selection } : {}))
+            select={({ next, ...options }: SelectPayload) =>
+              dispatch(select(next ? { next, ...options } : {}))
             }
           />
         ))}
