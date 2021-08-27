@@ -3,41 +3,41 @@ import { LANGS } from "./langs";
 import RESSOURCES from "./ressources";
 
 export enum EDGE_TYPES {
-  GROUND = "ground",
-  GROUND_IMPRACTICABLE = "ground-impracticable",
+  PLAIN = "plain",
+  MOUNTAIN = "mountain",
   WATER = "water",
-  AIR = "air",
+  SKIGH = "skigh",
 }
 
 export enum EDGE_FEATURES {
-  POND = "pond",
-  BERRIES = "berries",
+  HEALTHY_GREENS = "healthy-greens",
+  RESURGENCE = "resurgence",
 }
 
 export const EDGE_FEATURES_DATA: { [key in EDGE_FEATURES]: EdgeFeatureModel } =
   {
-    [EDGE_FEATURES.POND]: {
-      id: EDGE_FEATURES.POND,
+    [EDGE_FEATURES.HEALTHY_GREENS]: {
+      id: EDGE_FEATURES.HEALTHY_GREENS,
       name: {
-        [LANGS.FR]: "Étang",
-        [LANGS.EN]: "Pond",
-      },
-      outputs: [
-        {
-          ressourceId: RESSOURCES.WA,
-          amount: 1,
-        },
-      ],
-    },
-    [EDGE_FEATURES.BERRIES]: {
-      id: EDGE_FEATURES.BERRIES,
-      name: {
-        [LANGS.FR]: "Baies",
-        [LANGS.EN]: "Berries",
+        [LANGS.FR]: "Plantes comestibles",
+        [LANGS.EN]: "Healthy greens",
       },
       outputs: [
         {
           ressourceId: RESSOURCES.JING,
+          amount: 1,
+        },
+      ],
+    },
+    [EDGE_FEATURES.RESURGENCE]: {
+      id: EDGE_FEATURES.RESURGENCE,
+      name: {
+        [LANGS.FR]: "Résurgence",
+        [LANGS.EN]: "Resurgence",
+      },
+      outputs: [
+        {
+          ressourceId: RESSOURCES.WA,
           amount: 1,
         },
       ],
