@@ -11,8 +11,13 @@ function Icon({
   y = 0,
   fill = "white",
   path,
+  viewBox = "0 0 512 512",
   children,
-}: IconPropsModel & { path?: string; children?: ReactElement }) {
+}: IconPropsModel & {
+  path?: string;
+  viewBox?: string;
+  children?: ReactElement;
+}) {
   const value = ICON_SIZES_MODIFIER[size] * BASE_ICON_SIZE;
   return (
     <svg
@@ -21,7 +26,7 @@ function Icon({
       y={y - value / 2}
       height={value}
       width={value}
-      viewBox={`0 0 512 512`}
+      viewBox={viewBox}
     >
       {path ? <path d={path} fill={fill} fillOpacity="1"></path> : children}
     </svg>
