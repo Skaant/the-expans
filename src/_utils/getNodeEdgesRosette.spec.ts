@@ -11,9 +11,12 @@ describe("getNodeEdgesRosette", () => {
       Object.values(DIRECTIONS).every(
         (direction) =>
           edgesRosette[direction].type === "edge-slot" &&
-          [EDGE_TYPES.GROUND, EDGE_TYPES.GROUND_IMPRACTICABLE].includes(
-            (edgesRosette[direction].value as EdgeSlotModel).type
-          )
+          [
+            EDGE_TYPES.PLAIN,
+            EDGE_TYPES.MOUNTAIN,
+            EDGE_TYPES.WATER,
+            EDGE_TYPES.SKIGH,
+          ].includes((edgesRosette[direction].value as EdgeSlotModel).type)
       )
     ).toEqual(true);
   });
