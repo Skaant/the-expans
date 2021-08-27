@@ -49,11 +49,13 @@ function Node({
           <NodeEdgesRosette
             node={node}
             display={{ x: displayX, y: displayY }}
+            select={select}
           />
         </>
       )}
       {sourcing && (
         <EdgeSlot
+          id={sourcing.id}
           sourceId={node.id}
           direction={sourcing.direction}
           type={sourcing.type}
@@ -62,6 +64,7 @@ function Node({
             y: displayY,
           }}
           selected={true}
+          select={select}
         />
       )}
       {building ? (

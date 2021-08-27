@@ -3,31 +3,36 @@ import { DIRECTIONS } from "../_data/directions";
 import Coords from "../_models/Coords";
 import EdgeSlotModel from "../_models/EdgeSlot";
 import NodeModel from "../_models/Node";
+import { SelectionModel } from "../_store/_reducers/selection";
 import EdgeSlot from "./EdgeSlot";
 
 function NodeEdgesRosette({
   node,
   display,
+  select,
 }: {
   node: NodeModel;
   display: Coords;
+  select: (selection?: SelectionModel) => void;
 }) {
   return (
     <>
       {Object.values(DIRECTIONS).map((direction) => {
-        const { /* type, */ value } = node.edgesRosette[direction];
         // if (type === "edge-slot") {
-        const edgeSlot = value as EdgeSlotModel;
+        const { id, type } = node.edgesRosette[direction]
+          .value as EdgeSlotModel;
         return (
           <EdgeSlot
-            key={`${node.id}-${direction}`}
+            key={id}
+            id={id}
             sourceId={node.id}
             direction={direction}
-            type={edgeSlot.type}
+            type={type}
             display={{
               x: display.x,
               y: display.y,
             }}
+            select={select}
           />
         );
         // }

@@ -7,17 +7,19 @@ import EdgeSlotModel from "../_models/EdgeSlot";
 import NodeModel from "../_models/Node";
 import { useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
+import { SelectionModel } from "../_store/_reducers/selection";
 
 function EdgeSlot({
-  sourceId,
-  direction,
-  type,
   display,
   selected,
-}: Omit<EdgeSlotModel, "id"> & {
+  select,
+  ...edgeSlot
+}: EdgeSlotModel & {
   display: Coords;
   selected?: boolean;
+  select: (selection?: SelectionModel) => void;
 }) {
+  const { sourceId, direction, type } = edgeSlot;
   const nodes = useAppSelector(nodesSelector);
   const source = nodes.find((node) => sourceId === node.id) as NodeModel;
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
@@ -34,6 +36,13 @@ function EdgeSlot({
       stroke={selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"}
       strokeWidth={BASE_LINE_WIDTH}
       strokeDasharray="8px"
+      onClick={(ev) => {
+        ev.stopPropagation();
+        select({
+          item: edgeSlot,
+          type: "edge-slot",
+        });
+      }}
     />
   );
 }
