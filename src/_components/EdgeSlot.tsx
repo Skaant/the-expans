@@ -8,6 +8,7 @@ import NodeModel from "../_models/Node";
 import { useAppSelector } from "../_store/hooks";
 import { nodesSelector } from "../_store/_reducers/nodes";
 import { SelectionModel } from "../_store/_reducers/selection";
+import NodeSlotFlagIcon from "./_icons/NodeSlotFlag.icon";
 
 function EdgeSlot({
   display,
@@ -25,25 +26,35 @@ function EdgeSlot({
   const { x: modX, y: modY } = DIRECTIONS_MODIFIERS[direction];
   const displayAX = display.x + source.x + modX * 0.25;
   const displayAY = display.y + source.y + modY * 0.25;
-  const displayBX = display.x + source.x + modX * 0.75;
-  const displayBY = display.y + source.y + modY * 0.75;
+  const displayBX = display.x + source.x + modX * 0.9;
+  const displayBY = display.y + source.y + modY * 0.9;
   return (
-    <line
-      x1={displayAX}
-      y1={displayAY}
-      x2={displayBX}
-      y2={displayBY}
-      stroke={selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"}
-      strokeWidth={BASE_LINE_WIDTH}
-      strokeDasharray="8px"
-      onClick={(ev) => {
-        ev.stopPropagation();
-        select({
-          item: edgeSlot,
-          type: "edge-slot",
-        });
-      }}
-    />
+    <>
+      <line
+        x1={displayAX}
+        y1={displayAY}
+        x2={displayBX}
+        y2={displayBY}
+        stroke={
+          selected ? "red" : type === EDGE_TYPES.GROUND ? "green" : "grey"
+        }
+        strokeWidth={BASE_LINE_WIDTH}
+        strokeDasharray="8px"
+        onClick={(ev) => {
+          ev.stopPropagation();
+          select({
+            item: edgeSlot,
+            type: "edge-slot",
+          });
+        }}
+      />
+      {selected && (
+        <NodeSlotFlagIcon
+          x={display.x + source.x + modX}
+          y={display.y + source.y + modY}
+        />
+      )}
+    </>
   );
 }
 
